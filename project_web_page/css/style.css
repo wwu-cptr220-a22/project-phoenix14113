@@ -1,0 +1,43 @@
+html {
+  color: #d6f7e2;
+  background-color: #135a9c;
+}
+
+h1 {
+  margin-left: 8%;
+}
+
+p {
+  margin-left: 8%;
+  margin-right: 8%;
+  text-indent: 30px
+}
+
+h2 {
+  width: 70%;
+  margin-left: 25%;
+}
+
+table {
+  width: 85%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+th {
+  height: 2rem;
+  text-align: left;
+  color: #daf0e2;
+  background-color: #073c6d;
+  border-radius: 10px 10px 0px 0px;
+}
+
+td,
+th {
+  padding: .5em;
+  border-bottom: 1px solid #d3d3d3;
+}
+
+tr:nth-child(even) {
+  background-color: #eee;
+}
