@@ -29,7 +29,7 @@ th {
   text-align: left;
   color: #daf0e2;
   background-color: #073c6d;
-  border-radius: 10px 10px;
+  border-radius: 10px 10px 0px 0px;
 }
 
 td,
