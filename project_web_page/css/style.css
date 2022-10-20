@@ -10,7 +10,7 @@ h1 {
 p {
   margin-left: 8%;
   margin-right: 8%;
-  text-indent: 30px
+  text-indent: 30px;
 }
 
 h2 {
@@ -29,12 +29,12 @@ th {
   text-align: left;
   color: #daf0e2;
   background-color: #073c6d;
-  border-radius: 10px 10px 0px 0px;
+  border-radius: 10px 10px;
 }
 
 td,
 th {
-  padding: .5em;
+  padding: 0.5em;
   border-bottom: 1px solid #d3d3d3;
 }
 
