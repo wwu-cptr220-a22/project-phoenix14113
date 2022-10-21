@@ -1,5 +1,5 @@
 html {
-  color: #d6f7e2;
+  color: silver;
   background-color: #135a9c;
 }
 
@@ -15,7 +15,7 @@ p {
 
 h2 {
   width: 70%;
-  margin-left: 25%;
+  margin-left: 8%;
 }
 
 table {
@@ -27,7 +27,7 @@ table {
 th {
   height: 2rem;
   text-align: left;
-  color: #daf0e2;
+  color: silver;
   background-color: #073c6d;
   border-radius: 10px 10px 0 0;
 }
