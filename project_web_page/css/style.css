@@ -9,6 +9,7 @@ body {
   margin-bottom: 120px;
   margin-top: 100px;
 }
+
 nav {
   position: fixed;
   top: 0;
@@ -19,9 +20,7 @@ nav {
   box-shadow: 0 2px 5px rgba(0 0 0 / 16%), 0 2px 5px rgba(0 0 0 / 23%);
 }
 
-
 .logo {
-
   padding: 0 1em;
   background-image: url("../img/Logo5-01.png");
   max-width: 20%;
@@ -34,7 +33,6 @@ nav {
 a {
   color: #e7e7e7;
   text-decoration: none;
-  
 }
 
 li {
@@ -56,14 +54,12 @@ p {
 h2 {
   width: 70%;
   margin-left: 8%;
-  
 }
 
 table {
   width: 85%;
   margin-left: auto;
   margin-right: auto;
-  
 }
 
 th {
@@ -85,12 +81,10 @@ tr:nth-child(even) {
   background-color: #052646;
 }
 
-tr:nth-child(even) {
-  background-color: #eee;
-}
 #table {
   font-size: 18px;
 }
+
 footer {
   position: fixed;
   bottom: 0;
