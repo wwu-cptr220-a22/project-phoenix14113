@@ -7,21 +7,25 @@
   <meta name="description" content="shows all games currently on sale on steam">
   <meta name="WIP" content="This is a work in progress and these games are probably not on sale">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="keywords" content="HTML, CSS, JavaScript, Table, Sales, Steam, Main_App">
+  <link rel="icon" type="image/png" href="./img/Logo5-01.png">
   <link rel="stylesheet" href="css/style.css">
   <meta name="author" content="Adam Taylor">
   <!-- API site: https://steamapis.com/docs/market -->
+  <!-- Nav bar img: https://www.tenscope.co/free-logos -->
   <!-- https://cdn.cloudflare.steamstatic.com/steam/apps/{Unique_Game_ID}/header.jpg?t=1666359947 -->
 </head>
 
 <body>
   <nav>
     <ul>
-      <li><a href="./MainPage.html#main"><cite href="https://www.tenscope.co/free-logos"><span class="logo" aria-hidden="true">&nbsp;</span></cite>Main Page</a></li>
-      <li><a href="./MainPage.html#project">About the Program</a></li>
-      <li><a href="./AboutTheTeam.html">About Us</a></li>
+      <li><a href="./index.html"><cite href="https://www.tenscope.co/free-logos"><span class="logo"
+              aria-hidden="true">&nbsp;</span></cite>Main Page</a></li>
+      <li><a href="./index.html#why">Why This Site</a></li>
       <li><a href="./GamesTable.html">Sales Table</a></li>
+      <li><a href="./AboutTheTeam.html">About Us</a></li>
     </ul>
-</nav>
+  </nav>
   <h1>Steam Sales Description</h1>
   <p>
     This website is designed so that you can see exclusively what is on sale on steam at any given time. I want to be
@@ -36,19 +40,46 @@
         <th>Title</th>
         <th>Cost</th>
         <th>Sale Percentage</th>
-        <th>Publisher</th>
       </tr>
     </thead>
     <tbody>
-      <tr>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
+      <tr id="table">
+        <td><img src="https://cdn.cloudflare.steamstatic.com/steam/apps/1293830/header.jpg" width="260" height="115" alt="Forza Horizon 4"></td>
+        <td>Forza Horizon 4</td>
+        <td>$19.79</td>
+        <td>67%</td>
+      </tr>
+    </tbody>
+    <tbody>
+      <tr id="table">
+        <td><img src="https://cdn.cloudflare.steamstatic.com/steam/apps/1252330/header.jpg" width="260" height="115" alt="DEATHLOOP"></td>
+        <td>DEATHLOOP</td>
+        <td>23.99</td>
+        <td>60%</td>
+      </tr>
+    </tbody>
+    <tbody>
+      <tr id="table">
+        <td><img src="https://cdn.cloudflare.steamstatic.com/steam/apps/322330/header.jpg" width="260" height="115" alt="Don't Starve Together"></td>
+        <td>Don't Starve Together</td>
+        <td>5.09</td>
+        <td>66%</td>
+      </tr>
+    </tbody>
+    <tbody>
+      <tr id="table">
+        <td><img src="https://cdn.cloudflare.steamstatic.com/steam/apps/294100/header.jpg?" width="260" height="115"  atl= "game title image"></td>
+        <td>RimWorld - Royalty</td>
+        <td>17.99</td>
+        <td>10%</td>
       </tr>
     </tbody>
   </table>
+  <footer>
+    <li id="footer">&copy;2022 Adam Taylor</li>
+    <li>Email: <u><a href="phoenix14113@gmail.com">phoenix14113@gmail.com</a></u></li>
+  </footer>
 </body>
+
 
 </html>

@@ -6,6 +6,8 @@ html {
 body {
   color: #e7e7e7;
   font-size: 17px;
+  margin-bottom: 120px;
+  margin-top: 100px;
 }
 nav {
   position: fixed;
@@ -14,8 +16,10 @@ nav {
   width: 100%;
   background-color: #1c1653;
   padding: 0.5rem;
-  box-shadow: 0 2px 5px rgba(0 0 0 / 16%), 0 2px 5px rgba(0 0 0 / 23%);;
+  box-shadow: 0 2px 5px rgba(0 0 0 / 16%), 0 2px 5px rgba(0 0 0 / 23%);
 }
+
+
 .logo {
 
   padding: 0 1em;
@@ -36,7 +40,6 @@ a {
 li {
   display: inline;
   margin-right: 1rem;
-  
 }
 
 h1 {
@@ -53,12 +56,14 @@ p {
 h2 {
   width: 70%;
   margin-left: 8%;
+  
 }
 
 table {
   width: 85%;
   margin-left: auto;
   margin-right: auto;
+  
 }
 
 th {
@@ -73,6 +78,7 @@ td,
 th {
   padding: 0.5em;
   border-bottom: 1px solid #e7e7e7;
+  border: 2px solid black;
 }
 
 tr:nth-child(even) {
@@ -81,4 +87,17 @@ tr:nth-child(even) {
 
 tr:nth-child(even) {
   background-color: #eee;
+}
+#table {
+  font-size: 18px;
+}
+footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  text-align: center;
+  padding: 20px;
+  background-color: #1c1653;
+  box-shadow: 0 -3px 5px rgba(0 0 0 / 16%), 0 2px 5px rgba(0 0 0 / 23%);
 }
