@@ -55,11 +55,16 @@ h2 {
   width: 70%;
   margin-left: 8%;
 }
-
+#tableDescription {
+  max-width: 700px;
+}
 table {
-  width: 85%;
-  margin-left: auto;
-  margin-right: auto;
+  margin-left: 8%;
+  margin-right: 8%;
+  overflow-x: hidden;
+  table-layout: auto;
+  width: auto;
+  font-size: 18px;
 }
 
 th {
@@ -76,13 +81,14 @@ th {
   border-bottom: 1px solid #e7e7e7;
   border: 2px solid black;
 }
-
+#contactInfo {
+  border: 4px solid black;
+}
+#contactInfo td {
+  max-width: 400px;
+}
 tr:nth-child(even) {
   background-color: #052646;
-}
-
-#table {
-  font-size: 18px;
 }
 
 footer {
@@ -113,6 +119,14 @@ footer {
   float: right;
   width: 40%;
   height: 40%;
+}
+
+#contact {
+  float: right;
+  margin-right: 5%;
+  padding: 1rem;
+  width: 200px;
+  height: 200px;
 }
 @media (max-width: 400px){
   #salesTag {
@@ -150,6 +164,7 @@ footer {
   p,
   h1,
   h2,
+  table,
   #controller
  {
     margin-left: 16%;
@@ -162,7 +177,7 @@ footer {
 }
 
 @media (min-width: 1350px) {
-  #steam {
+  #steam, #contact{
     margin-right: 20%;
     margin-top: 1%;
   }
@@ -172,7 +187,7 @@ footer {
 }
 
 @media (min-width: 1600px) {
-  #steam {
+  #steam, #contact {
     margin-right: 30%;
   }
 
