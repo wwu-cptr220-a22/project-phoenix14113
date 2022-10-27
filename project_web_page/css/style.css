@@ -59,7 +59,7 @@ h2 {
   margin-left: 8%;
 }
 
-#tableDescription {
+#table-description {
   max-width: 700px;
 }
 
@@ -87,11 +87,11 @@ th {
   border: 2px solid black;
 }
 
-#contactInfo {
+#contact-info {
   border: 4px solid #052442;
 }
 
-#contactInfo td {
+#contact-info td {
   max-width: 400px;
 }
 
@@ -123,7 +123,7 @@ footer {
   height: 32%;
 }
 
-#salesTag {
+#sales-tag {
   float: right;
   width: 40%;
   height: 40%;
@@ -138,7 +138,7 @@ footer {
 }
 
 @media (max-width: 400px) {
-  #salesTag {
+  #sales-tag {
     width: 150px;
     height: 100px;
   }
@@ -181,7 +181,7 @@ footer {
     height: 200px;
   }
 
-  #salesTag {
+  #sales-tag {
     width: 250px;
     height: 250px;
   }
@@ -195,7 +195,7 @@ footer {
     height: 320px;
   }
 
-  #salesTag {
+  #sales-tag {
     margin-right: 16%;
   }
 
@@ -214,27 +214,24 @@ footer {
 }
 
 @media (min-width: 1350px) {
-
   #steam,
   #contact {
     margin-right: 20%;
     margin-top: 1%;
   }
 
-  #salesTag {
+  #sales-tag {
     margin-right: 25%;
   }
 }
 
 @media (min-width: 1600px) {
-
   #steam,
   #contact {
     margin-right: 30%;
   }
 
-  #salesTag {
+  #sales-tag {
     margin-right: 35%;
   }
-
 }
