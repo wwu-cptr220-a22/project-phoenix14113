@@ -6,8 +6,6 @@ html {
 body {
   color: #e7e7e7;
   font-size: 17px;
-  margin-bottom: 120px;
-  margin-top: 100px;
 }
 
 nav {
@@ -33,16 +31,24 @@ nav {
 a {
   color: #e7e7e7;
   text-decoration: none;
+  
 }
 
 li {
   display: inline;
-  margin-right: 1rem;
+  padding-top: 25px;
+  padding-bottom: 25px;
+  padding-left: 15px;
+  padding-right: 15px;
+  transition: background-color 0.75s;
+}
+ul li:hover{
+  background-color: #585858;
 }
 
 h1 {
   margin-left: 8%;
-  margin-top: 3em;
+  margin-top: 4em;
 }
 
 p {
@@ -137,6 +143,30 @@ footer {
     width: 130px;
     height: 100px;
   }
+
+}
+@media (max-width: 464px) {
+  li {
+    padding: 5px;
+  }
+  nav {
+    position: relative;
+    top:0;
+  }
+  h1 {
+    margin-top: 1em; 
+  }
+}
+@media (max-width: 550px) {
+  li {
+    padding-left: 5px;
+    padding-right: 5px;
+    line-height: 30px;
+  }
+
+  footer{
+    position: relative;
+  }
 }
 @media (min-width: 750px) {
   #controller {
@@ -148,6 +178,7 @@ footer {
     width: 250px;
     height: 250px;
   }
+
 }
 
 @media (min-width: 1100px) {
@@ -187,8 +218,11 @@ footer {
 }
 
 @media (min-width: 1600px) {
-  #steam, #contact {
+  #steam, #contact{
     margin-right: 30%;
+  }
+  #salesTag{
+    margin-right: 35%;
   }
 
 }
