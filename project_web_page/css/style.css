@@ -35,7 +35,7 @@ a {
 
 li {
   display: inline;
-  padding: 38px 20px 38px 20px;
+  padding: 38px 7px 38px 7px;
   transition: background-color 0.75s;
 }
 
@@ -145,6 +145,12 @@ footer {
   height: 200px;
 }
 
+@media (max-width: 300px) {
+  #contact {
+    display: none;
+  }
+}
+
 @media (max-width: 400px) {
   #sales-tag {
     width: 150px;
@@ -152,8 +158,8 @@ footer {
   }
 
   #controller {
-    width: 130px;
-    height: 100px;
+    width: 100px;
+    height: 70px;
   }
 }
 
@@ -163,11 +169,16 @@ footer {
   }
 }
 
-@media (max-width: 464px) {
+@media (max-width: 480px) {
 
   #contact {
     width: 25%;
     height: 25%;
+  }
+
+  li {
+    display: block;
+    padding: 14px 7px 14px 7px;
   }
 
   nav {
@@ -183,11 +194,6 @@ footer {
 }
 
 @media (max-width: 550px) {
-  li {
-    padding: 5px;
-    line-height: 30px;
-  }
-
   table thead {
     display: none;
   }
