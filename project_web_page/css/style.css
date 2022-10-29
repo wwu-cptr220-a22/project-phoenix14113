@@ -110,10 +110,6 @@ tr:nth-child(odd) {
   background-color: #052646;
 }
 
-#why {
-  padding-bottom: 70px;
-}
-
 footer {
   position: fixed;
   bottom: 0;
@@ -206,10 +202,6 @@ footer {
     display: block;
     width: 80%;
     background-color: #10477a;
-  }
-
-  #why {
-    padding-bottom: 0;
   }
 
   footer {
