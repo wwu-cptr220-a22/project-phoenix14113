@@ -160,11 +160,6 @@ footer {
 }
 
 @media (max-width: 400px) {
-  #sales-tag {
-    width: 150px;
-    height: 100px;
-  }
-
   #controller {
     width: 100px;
     height: 70px;
@@ -200,6 +195,10 @@ footer {
 
 @media (max-width: 550px) {
   table thead {
+    display: none;
+  }
+
+  #sales-tag{
     display: none;
   }
 
