@@ -1,7 +1,7 @@
 'use strict'
 
 function addLogo () {
-  // create a span that has the logo attatched to it
+  // create a span that has the logo attached to it
   const span = document.createElement('span')
   span.classList.add('logo')
   span.ariaHidden = 'true'
