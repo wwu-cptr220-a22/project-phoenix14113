@@ -18,8 +18,6 @@ nav {
   box-shadow: 0 2px 5px rgba(0 0 0 / 16%), 0 2px 5px rgba(0 0 0 / 23%);
 }
 
-
-
 .logo {
   padding: 0 1em;
   background-image: url("../img/Logo5-01.png");
@@ -40,9 +38,10 @@ li {
   padding: 38px 7px;
   transition: background-color 0.75s;
 }
+
 #menu {
   font-size: x-large;
-  padding: 20px 20px;
+  padding: 20px;
 }
 
 ul li:hover {

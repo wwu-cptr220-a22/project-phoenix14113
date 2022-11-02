@@ -1,6 +1,7 @@
 'use strict'
 
 function addLogo () {
+  // create a span that has the logo attatched to it
   const span = document.createElement('span')
   span.classList.add('logo')
   span.ariaHidden = 'true'
@@ -9,9 +10,12 @@ function addLogo () {
 }
 
 function addlink (path, text, span = null) {
+  // Have the input text link to the path when clicked
   const a = document.createElement('a')
   const content = document.createTextNode(text)
   a.href = path
+
+  // If a span is passed in put it in before adding the text
   if (span) {
     a.appendChild(span)
   }
@@ -21,12 +25,20 @@ function addlink (path, text, span = null) {
 
 function createLI (path, text, addLogoElement = false) {
   let span = null
+
+  // if this function starts comes with a true addLogoElement then
+  // a logo will be added to the a element before its text
   if (addLogoElement) {
     span = addLogo()
   }
+  // create a element
   const a = addlink(path, text, span)
+
+  // turn the a element into a list entry
   const li = document.createElement('li')
   li.appendChild(a)
+
+  // add it to the navbar
   document.querySelector('ul').appendChild(li)
 }
 
@@ -46,7 +58,7 @@ function createNavBar () {
 
 function deleteNavBar () {
   const ul = document.querySelector('ul')
-
+  // remove everything that is not the menu li element
   while (ul.lastElementChild !== ul.firstElementChild) {
     ul.removeChild(ul.lastElementChild)
   }
@@ -55,10 +67,13 @@ function deleteNavBar () {
 let showingNavBar = false
 
 document.querySelector('li#menu').addEventListener('click', () => {
+  // create interactive menu li entry
   if (!showingNavBar) {
+    // show the nav bar when pressed if the navbar isn't present
     showingNavBar = true
     createNavBar()
   } else {
+    // remove the nav bar when pressed if the navbar isn't present
     showingNavBar = false
     deleteNavBar()
   }
