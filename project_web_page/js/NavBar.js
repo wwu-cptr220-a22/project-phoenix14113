@@ -12,6 +12,7 @@ function addLogo () {
 function addlink (path, text, span = null) {
   // Have the input text link to the path when clicked
   const a = document.createElement('a')
+  a.classList.add('link')
   const content = document.createTextNode(text)
   a.href = path
 
@@ -39,6 +40,9 @@ function createLI (path, text, addLogoElement = false) {
   li.appendChild(a)
 
   // add it to the navbar
+  li.addEventListener('click', () => {
+    document.location.href = path
+  })
   document.querySelector('ul').appendChild(li)
 }
 

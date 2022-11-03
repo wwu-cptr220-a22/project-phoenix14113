@@ -39,12 +39,27 @@ li {
   transition: background-color 0.75s;
 }
 
-#menu {
+#menu{
   font-size: x-large;
   padding: 20px;
 }
 
+button {
+  background-color: #1c1653;
+  color: #e7e7e7;
+  border: hidden;
+  transition: background-color 0.75s;
+}
+
+i {
+  color: #e7e7e7;
+}
+
 ul li:hover {
+  background-color: #585858;
+}
+
+ul li:hover button{
   background-color: #585858;
 }
 
