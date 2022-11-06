@@ -185,7 +185,7 @@ footer {
 }
 
 .alert {
-  text-indent: 0px;
+  text-indent: 0;
   background-color: #8a1616;
   padding: 10px;
   border-radius: 10px;
