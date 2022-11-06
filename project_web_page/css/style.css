@@ -39,7 +39,7 @@ li {
   transition: background-color 0.75s;
 }
 
-#menu{
+#menu {
   font-size: x-large;
   padding: 20px;
 }
@@ -59,7 +59,7 @@ ul li:hover {
   background-color: #585858;
 }
 
-ul li:hover button{
+ul li:hover button {
   background-color: #585858;
 }
 
