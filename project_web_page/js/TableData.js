@@ -85,7 +85,7 @@ document.querySelector('#search').addEventListener('click', (event) => {
   fetchGameList(document.querySelector('input').value)
 })
 
-function renderError (Err) {
+function renderError () {
     const p = document.createElement('p')
     p.classList.add('alert')
     p.classList.add('alert-danger')
