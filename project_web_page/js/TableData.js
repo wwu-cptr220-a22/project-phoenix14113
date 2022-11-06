@@ -19,7 +19,7 @@ function renderItems (game) {
       gamePrice = 'Free'
       gameDiscount = 'Free'
     }
-    if (gameDiscount != 0) {
+    if (gameDiscount !== 0) {
       // create a row with the game information
       const img = document.createElement('img')
       img.src = gameImg
@@ -59,7 +59,7 @@ function fetchItems (gamesList) {
     const promise = fetch(url).then((response) => {
       return response.json()
     }).then(renderItems)
-    .catch(renderError)
+      .catch(renderError)
     return promise
   })
 }
@@ -71,7 +71,7 @@ function fetchGameList (steamId) {
   const promise = fetch(url).then((response) => {
     return response.json()
   }).then(fetchItems)
-  .catch(renderError)
+    .catch(renderError)
 
   return promise
 }
@@ -86,11 +86,11 @@ document.querySelector('#search').addEventListener('click', (event) => {
 })
 
 function renderError () {
-    const p = document.createElement('p')
-    p.classList.add('alert')
-    p.classList.add('alert-danger')
+  const p = document.createElement('p')
+  p.classList.add('alert')
+  p.classList.add('alert-danger')
 
-    p.textContent = "An error occur while trying to access this SteamID!"
-    document.querySelector('tbody').innerHTML = ''
-    document.querySelector('tbody').appendChild(p)
-  }
+  p.textContent = 'An error occur while trying to access this SteamID!'
+  document.querySelector('tbody').innerHTML = ''
+  document.querySelector('tbody').appendChild(p)
+}
