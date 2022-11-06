@@ -25,12 +25,29 @@
     </ul>
   </nav>
   <h1>Steam Sales Description</h1>
-  <p id="table-description">
-    This website is designed so that you can see exclusively what is on sale on steam at any given time. I want to be
-    able to provide people with an easier, more covienient, and better formatted way of seeing what is on sale than
-    steam or other third party websites that also show the rest of the steam database.
+  <p class="table-description">
+    This website is designed so that you can see exclusively what is on sale and free that you or someone else you know
+    already owns on steam. I want to be able to provide people with an easier, and more covienient way to see what is on
+    sale than on their friends game list than steam or other third party websites that also show the rest of the steam
+    database.
+  </p>
+  <p class="table-description">
+    In order to use this service you need your or your friend's SteamID. You can find this by going to their steam
+    profile website and then copying the last field in the url. Most of the time this will be a long number but it could
+    be a phrase if you or your friend changed it.
   </p>
   <h2>Sales Table</h2>
+  <form class="form-inline" method="GET" action="https://api.steampowered.com">
+    <div class="form-group mr-3">
+      <label for="search-query" class="mr-2">Please enter the SteamID of the play's games you would like to
+        search?</label>
+      <input type="text" name="term" id="search-query" class="form-control">
+    </div>
+    <button id='search' type="submit" class="btn btn-primary">
+      Search!
+    </button>
+    <input type="hidden" name="entity" value="SteamID"> <!-- extra form param -->
+  </form>
   <table>
     <thead>
       <tr>
@@ -41,34 +58,6 @@
       </tr>
     </thead>
     <tbody>
-      <tr>
-        <td><img src="https://cdn.cloudflare.steamstatic.com/steam/apps/1293830/header.jpg" width="260" height="115"
-            alt="Sports car coming head on to a Jeep"></td>
-        <td>Forza Horizon 4</td>
-        <td>$19.79</td>
-        <td>67%</td>
-      </tr>
-      <tr>
-        <td><img src="https://cdn.cloudflare.steamstatic.com/steam/apps/1252330/header.jpg" width="260" height="115"
-            alt="A girl holding a sniper riffle and a guy holding a pistol"></td>
-        <td>DEATHLOOP</td>
-        <td>23.99</td>
-        <td>60%</td>
-      </tr>
-      <tr>
-        <td><img src="https://cdn.cloudflare.steamstatic.com/steam/apps/322330/header.jpg" width="260" height="115"
-            alt="A man holding a torch and a woman run from something"></td>
-        <td>Don't Starve Together</td>
-        <td>5.09</td>
-        <td>66%</td>
-      </tr>
-      <tr>
-        <td><img src="https://cdn.cloudflare.steamstatic.com/steam/apps/294100/header.jpg?" width="260" height="115"
-            alt="A planet from the view of space with the ice caps visible"></td>
-        <td>RimWorld - Royalty</td>
-        <td>17.99</td>
-        <td>10%</td>
-      </tr>
     </tbody>
   </table>
   <footer>
@@ -78,6 +67,7 @@
     </ol>
   </footer>
   <script src="js/NavBar.js"></script>
+  <script src="js/TableData.js"></script>
 </body>
 
 </html>
