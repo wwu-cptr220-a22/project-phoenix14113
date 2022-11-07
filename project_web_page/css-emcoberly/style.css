@@ -1,28 +1,29 @@
 body {
   margin: auto;
-  background-color: rgb(30, 30, 40);
-  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  background-color: #1E1E28;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
 }
 
 header {
   margin-left: 5%;
   padding-top: 5%;
   font-size: 40px;
-  color: rgb(169, 169, 169);
+  color: #A9A9A9;
 }
 
-#header-link:hover,#icon:hover {
-  color:rgb(180,180,180);
+#header-link:hover,
+#icon:hover {
+  color: #B4B4B4;
 }
 
 nav {
   position: fixed;
   top: 0;
   left: 0;
-  background-color: rgb(10, 10, 20);
+  background-color: rgb(10 10 20);
   width: 100%;
   padding: 1rem;
-  box-shadow: -12px 4px 4px rgba(10, 10, 20, 0.7);
+  box-shadow: -12px 4px 4px rgba(10 10 20 / 0.7);
 }
 
 #icon {
@@ -44,7 +45,7 @@ nav ul {
 nav ul a {
   color: rgb(150, 150, 150);
   font-weight: 700;
-  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
   text-decoration: none;
   font-size: 24px;
   margin: 0;
@@ -73,11 +74,11 @@ nav li {
 .searchBox button {
   width: 59px;
   height: 59px;
-  background-image: radial-gradient(rgb(35,35,50),rgb(10,10,20));
+  background-image: radial-gradient(rgb(35, 35, 50), rgb(10, 10, 20));
 }
 
 .searchBox button:hover {
-  background-image: radial-gradient(rgb(50,50,70),rgb(10,10,20));
+  background-image: radial-gradient(rgb(50, 50, 70), rgb(10, 10, 20));
 }
 
 .searchBox i {
@@ -110,7 +111,7 @@ nav li {
 .leaderboard-header {
   padding: 0.75rem;
   height: 50px;
-  background-image: linear-gradient(175deg,rgb(40,40,60),rgb(55,55,75));
+  background-image: linear-gradient(175deg, rgb(40, 40, 60), rgb(55, 55, 75));
 }
 
 .leaderboard h2 {
@@ -190,7 +191,7 @@ td {
 
 .friend-list th {
   text-align: left;
-  background-image: linear-gradient(175deg,rgb(40,40,60),rgb(55,55,75));
+  background-image: linear-gradient(175deg, rgb(40, 40, 60), rgb(55, 55, 75));
 }
 
 .friend-list tr {
