@@ -2,7 +2,6 @@
 // "https://cdn.cloudflare.steamstatic.com/steam/apps/1252330/header.jpg"
 function renderItems (game) {
   const objectKey = Object.keys(game)
-  console.log(game)
   // if the game in question has been loaded successfully
   // also remove games that don't have sales data that aren't free
   if (game[objectKey[0]].success && (game[objectKey[0]].data.is_free || game[objectKey[0]].data.price_overview)) {
@@ -81,7 +80,6 @@ document.querySelector('#search').addEventListener('click', (event) => {
   // collect SteamID
   event.preventDefault()
   event.stopPropagation()
-  console.log(document.querySelector('input').value)
   fetchGameList(document.querySelector('input').value)
 })
 
