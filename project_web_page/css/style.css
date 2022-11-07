@@ -241,6 +241,7 @@ footer {
   nav {
     position: relative;
     top: 0;
+    width: auto;
   }
 
   li {
@@ -255,6 +256,7 @@ footer {
   footer {
     margin-top: 200px;
     position: relative;
+    width: auto;
   }
 }
 
