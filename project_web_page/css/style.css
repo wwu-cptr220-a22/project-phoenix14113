@@ -70,7 +70,7 @@ h1 {
 
 .flex-container {
   display: flex;
-  margin-bottom: 20px;
+  margin-bottom: 5px;
 }
 
 p,
@@ -173,7 +173,10 @@ footer {
   float: right;
   width: 40%;
   height: 40%;
-  margin-bottom: 70px;
+}
+
+#stats-tag {
+  margin-bottom: 150px;
 }
 
 #contact {

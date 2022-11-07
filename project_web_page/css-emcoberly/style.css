@@ -1,0 +1,214 @@
+body {
+  margin: auto;
+  background-color: rgb(30, 30, 40);
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+header {
+  margin-left: 5%;
+  padding-top: 5%;
+  font-size: 40px;
+  color: rgb(169, 169, 169);
+}
+
+#header-link:hover,#icon:hover {
+  color:rgb(180,180,180);
+}
+
+nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: rgb(10, 10, 20);
+  width: 100%;
+  padding: 1rem;
+  box-shadow: -12px 4px 4px rgba(10, 10, 20, 0.7);
+}
+
+#icon {
+  vertical-align: middle;
+  padding-left: 0.5rem;
+  padding-bottom: 0.5rem;
+  height: 40px;
+  width: 40px;
+  filter: invert(70%);
+}
+
+nav ul {
+  padding: 0;
+  margin-left: 3%;
+  padding-top: 0;
+  display: inline-block;
+}
+
+nav ul a {
+  color: rgb(150, 150, 150);
+  font-weight: 700;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  text-decoration: none;
+  font-size: 24px;
+  margin: 0;
+}
+
+nav li {
+  display: inline;
+  margin-right: 2rem;
+}
+
+.searchBox {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  top: 300px;
+  margin-bottom: 75px;
+}
+
+.searchBox input {
+  height: 50px;
+  width: 300px;
+  font-size: large;
+  padding-left: .8rem;
+}
+
+.searchBox button {
+  width: 59px;
+  height: 59px;
+  background-image: radial-gradient(rgb(35,35,50),rgb(10,10,20));
+}
+
+.searchBox button:hover {
+  background-image: radial-gradient(rgb(50,50,70),rgb(10,10,20));
+}
+
+.searchBox i {
+  color: rgb(169, 169, 189);
+  font-size: 20px;
+}
+
+.info {
+  font-size: 30px;
+  margin-left: 7.5%;
+  float: left;
+  width: 50%;
+  color: rgb(169, 169, 169);
+  margin-bottom: 100px;
+}
+
+.leaderboard {
+  width: 80%;
+  height: 400px;
+  background-color: rgb(50, 50, 65);
+  color: rgb(169, 169, 169);
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 50px;
+  border: 3px solid rgb(90, 90, 105);
+  box-shadow: 8px 8px 12px rgba(10, 10, 20, 0.8);
+  border-radius: 8px;
+}
+
+.leaderboard-header {
+  padding: 0.75rem;
+  height: 50px;
+  background-image: linear-gradient(175deg,rgb(40,40,60),rgb(55,55,75));
+}
+
+.leaderboard h2 {
+  font-weight: 500;
+  font-size: x-large;
+  margin-bottom: 0;
+  margin-top: 0;
+}
+
+.leaderboard h3 {
+  font-weight: 400;
+  font-size: large;
+  margin-bottom: 0;
+  margin-top: 0;
+}
+
+.leaderboard table {
+  width: 100%;
+  height: 327px;
+  margin: auto;
+  border-collapse: collapse;
+}
+
+.leaderboard tr {
+  height: 10%;
+}
+
+.leaderboard td {
+  text-align: center;
+}
+
+.leaderboard table,
+tbody,
+th,
+tr,
+td {
+  border: 2px solid rgb(90, 90, 105);
+}
+
+.my-stats {
+  border: 3px solid rgb(90, 90, 105);
+  width: 70%;
+  height: 800px;
+  float: center;
+  margin: auto;
+  border-collapse: collapse;
+  background-color: rgb(50, 50, 65);
+  color: rgb(169, 169, 169);
+  font-size: x-large;
+  margin-bottom: 150px;
+  box-shadow: 8px 8px 12px rgba(10, 10, 20, 0.8);
+  border-radius: 8px;
+}
+
+.my-stats tr {
+  height: 10%;
+  padding: 0.75rem;
+}
+
+.my-stats td {
+  text-align: center;
+}
+
+.friend-list {
+  border: 3px solid rgb(90, 90, 105);
+  width: 20%;
+  height: 1000px;
+  float: right;
+  margin-right: 7.5%;
+  border-collapse: collapse;
+  background-color: rgb(50, 50, 65);
+  color: rgb(169, 169, 169);
+  font-size: large;
+  margin-bottom: 150px;
+  box-shadow: 8px 8px 12px rgba(10, 10, 20, 0.8);
+}
+
+.friend-list th {
+  text-align: left;
+  background-image: linear-gradient(175deg,rgb(40,40,60),rgb(55,55,75));
+}
+
+.friend-list tr {
+  height: 4.16%;
+}
+
+.friend-list th,
+td {
+  padding: 0.5rem;
+}
+
+footer {
+  background-color: rgb(10, 10, 20);
+  color: rgb(140, 140, 150);
+  font-size: .5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  vertical-align: bottom;
+  height: 100px;
+}
