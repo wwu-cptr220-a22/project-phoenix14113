@@ -55,7 +55,12 @@ function fetchItems (gamesList) {
   document.querySelector('tbody').innerHTML = ''
   gamesList.response.games.forEach((element) => {
     const url = URL_GAMEID_TEMPLATE.replace('{gameId}', element.appid)
-    const promise = fetch(url).then((response) => {
+    const promise = fetch(url, {
+      mode: 'cors',
+      headers: {
+        'Access-Control-Allow-Origin':'*'
+      }
+    }).then((response) => {
       return response.json()
     }).then(renderItems)
       .catch(renderError)
@@ -67,7 +72,13 @@ const URL_USERID_TEMPLATE = 'https://api.steampowered.com/IPlayerService/GetOwne
 function fetchGameList (steamId) {
   // collect all games from a user's library
   const url = URL_USERID_TEMPLATE.replace('{steamId}', steamId)
-  const promise = fetch(url).then((response) => {
+  const promise = fetch(url, {
+    mode: 'cors',
+    headers: {
+      'Access-Control-Allow-Origin':'*'
+    }
+  }).then((response) => {
+    console.log(response)
     return response.json()
   }).then(fetchItems)
     .catch(renderError)
