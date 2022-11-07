@@ -225,11 +225,19 @@ footer {
   }
 }
 
-@media (max-width: 550px) {
+@media (max-width: 575px) {
   table thead {
     display: none;
   }
+  
+  td {
+    display: block;
+    width: 80%;
+    background-color: #10477a;
+  }
+}
 
+@media (max-width: 650px) {
   nav {
     position: relative;
     top: 0;
@@ -242,12 +250,6 @@ footer {
 
   h1 {
     margin-top: 1em;
-  }
-
-  td {
-    display: block;
-    width: 80%;
-    background-color: #10477a;
   }
 
   footer {
