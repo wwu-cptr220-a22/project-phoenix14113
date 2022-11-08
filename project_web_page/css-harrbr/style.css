@@ -26,7 +26,7 @@ nav {
   height: 8%;
   width: 100%;
   padding: 1rem;
-  border: 3px solid #4B004B;
+  border: 3px solid #4b004b;
 }
 
 #menu {
@@ -47,14 +47,14 @@ nav ul li {
   color: white;
 }
 
-nav ul li a {
-  transition: color 0.5s;
-}
-
 td a,
 nav ul li a {
   color: white;
   text-decoration: none;
+}
+
+nav ul li a {
+  transition: color 0.5s;
 }
 
 ul#genres li button {
@@ -128,7 +128,7 @@ tr,
 th,
 td,
 #genres ul {
-  border: 3px solid #4B004B;
+  border: 3px solid #4b004b;
 }
 
 #game-img {
@@ -148,7 +148,7 @@ ul#genres li {
 footer {
   position: fixed;
   background-color: #230023;
-  border: 3px solid #4B004B;
+  border: 3px solid #4b004b;
   color: white;
   display: flex;
   height: 10%;
