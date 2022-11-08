@@ -48,19 +48,14 @@ function renderItems (game) {
   }
 }
 
-const URL_GAMEID_TEMPLATE = 'http://store.steampowered.com/api/appdetails?appids={gameId}'
+const URL_GAMEID_TEMPLATE = 'https://cors-anywhere.herokuapp.com/http://store.steampowered.com/api/appdetails?appids={gameId}'
 
 function fetchItems (gamesList) {
-  // use the steam id from the profile to get the actual game data
+  // use the steam id from the profile to get the actual game data 
   document.querySelector('tbody').innerHTML = ''
   gamesList.response.games.forEach((element) => {
     const url = URL_GAMEID_TEMPLATE.replace('{gameId}', element.appid)
-    const promise = fetch(url, {
-      mode: 'cors',
-      headers: {
-        'Access-Control-Allow-Origin':'*'
-      }
-    }).then((response) => {
+    const promise = fetch(url).then((response) => {
       return response.json()
     }).then(renderItems)
       .catch(renderError)
@@ -68,17 +63,11 @@ function fetchItems (gamesList) {
   })
 }
 
-const URL_USERID_TEMPLATE = 'https://api.steampowered.com/IPlayerService/GetOwnedGames/v1/?key=781B096A18E5438AAA028E11D22B796E&steamid={steamId}'
+const URL_USERID_TEMPLATE = 'https://cors-anywhere.herokuapp.com/https://api.steampowered.com/IPlayerService/GetOwnedGames/v1/?key=781B096A18E5438AAA028E11D22B796E&steamid={steamId}'
 function fetchGameList (steamId) {
   // collect all games from a user's library
   const url = URL_USERID_TEMPLATE.replace('{steamId}', steamId)
-  const promise = fetch(url, {
-    mode: 'cors',
-    headers: {
-      'Access-Control-Allow-Origin':'*'
-    }
-  }).then((response) => {
-    console.log(response)
+  const promise = fetch(url).then((response) => {
     return response.json()
   }).then(fetchItems)
     .catch(renderError)
