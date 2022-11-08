@@ -1,168 +1,173 @@
 html {
-    margin: 40px;
-    height: 100%;
+  margin: 40px;
+  height: 100%;
 }
 
 header {
-    padding-top: 4%;
+  padding-top: 4%;
 }
 
 header,
 div {
-    color: white;
-    margin-left: 35px;
-    font-size: large;
+  color: white;
+  margin-left: 35px;
+  font-size: large;
 
 }
 
 h2 {
-    margin-left: 15px;
+  margin-left: 15px;
 }
 
 nav {
-    position: fixed;
-    top: 0;
-    left: 0;
-    background-color: rgb(35, 0, 35);
-    height: 8%;
-    width: 100%;
-    padding: 1rem;
-    border: 3px solid rgb(75 0 75);
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: rgb(35, 0, 35);
+  height: 8%;
+  width: 100%;
+  padding: 1rem;
+  border: 3px solid rgb(75 0 75);
 }
 
 #menu {
-    font-size: x-large;
-    padding: 10px;
+  font-size: x-large;
+  padding: 10px;
 }
 
 button {
-    background-color: rgb(35, 0, 35);
-    color: #e7e7e7;
-    border: hidden;
-    transition: color 0.5s;
+  background-color: rgb(35, 0, 35);
+  color: #e7e7e7;
+  border: hidden;
+  transition: color 0.5s;
 }
 
 nav ul li {
-    display: inline;
-    margin-right: 2rem;
-    color: white;
+  display: inline;
+  margin-right: 2rem;
+  color: white;
 }
 
 nav ul li a {
-    transition: color 0.5s;
+  transition: color 0.5s;
 }
 
-nav ul li a, td a {
-    color: white;
-    text-decoration: none;
+
+td a,
+nav ul li a {
+  color: white;
+  text-decoration: none;
 }
 
-nav ul li a:hover, td a:hover, ul#genres li button:hover {
-    color: hotpink;
-    text-decoration: none;
+ul#genres li button {
+  scale: 150%;
+  border-radius: 10%;
+  margin: 10px;
+  left: 10%;
+}
+
+td a:hover,
+nav ul li a:hover,
+ul#genres li button:hover {
+  color: hotpink;
+  text-decoration: none;
 }
 
 #nav-icons {
-    margin-left: 30px;
+  margin-left: 30px;
 }
 
 .logo {
-    padding: 0 1em;
-    background-image: url("../img/Logo5-01.png");
-    max-width: 20%;
-    max-height: auto;
-    background-position: left;
-    background-repeat: repeat-y;
-    background-size: cover;
+  padding: 0 1em;
+  background-image: url("../img/Logo5-01.png");
+  max-width: 20%;
+  max-height: auto;
+  background-position: left;
+  background-repeat: repeat-y;
+  background-size: cover;
 }
 
 .split {
-    height: 100%;
-    width: 50%;
-    position: fixed;
-    z-index: 1;
-    overflow-x: hidden;
-    padding-top: 20px;
+  height: 100%;
+  width: 50%;
+  position: fixed;
+  z-index: 1;
+  overflow-x: hidden;
+  padding-top: 20px;
 }
 
 .left {
-    left: 0;
+  left: 0;
 }
 
 .right {
-    right: 0;
+  right: 0;
 }
 
 p {
-    margin-left: 15px;
+  margin-left: 15px;
 }
 
 body {
-    background-image: url("../img/game-console-6603120.jpg");
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: 125% 125%;
-    overflow: hidden;
+  background-image: url("../img/game-console-6603120.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 125% 125%;
+  overflow: hidden;
 }
 
 #game-table {
-    position: relative;
-    width: 80%;
-    height: 10%;
-    background-color: rgb(35 0 35);
-    margin-left: 10%;
-    margin-bottom: 0.5%;
+  position: relative;
+  width: 80%;
+  height: 10%;
+  background-color: rgb(35 0 35);
+  margin-left: 10%;
+  margin-bottom: 0.5%;
 }
 
 #game-table,
 tr,
 th,
-td, 
+td,
 #genres ul {
-    border: 3px solid rgb(75 0 75);
+  border: 3px solid rgb(75 0 75);
 }
 
 #game-img {
-    margin-left: 10%;
-    width: 80%;
+  margin-left: 10%;
+  width: 80%;
 }
 
-tr th, td {
-    text-align: center;
+tr th,
+td {
+  text-align: center;
 }
 
 ul#genres li {
-    list-style: none;
-}
-
-ul#genres li button {
-    scale: 150%;
-    border-radius: 10%;
-    margin: 10px;
-    left: 10%;
+  list-style: none;
 }
 
 footer {
-    position: fixed;
-    background-color: rgb(35, 0, 35);
-    border: 3px solid rgb(75 0 75);
-    color: white;
-    display: flex;
-    height: 10%;
-    width: 100%;
-    bottom: 0;
-    left: 0;
-    margin-bottom: 0;
+  position: fixed;
+  background-color: rgb(35, 0, 35);
+  border: 3px solid rgb(75 0 75);
+  color: white;
+  display: flex;
+  height: 10%;
+  width: 100%;
+  bottom: 0;
+  left: 0;
+  margin-bottom: 0;
 }
 
 footer h1 {
-    margin-top: 30px;
-    text-align: center;
-    font-size: x-large;
+  margin-top: 30px;
+  text-align: center;
+  font-size: x-large;
 }
 
 @media (max-width: 360px) {
-    footer {
-        display: none;
-    }
+  footer {
+    display: none;
+  }
 }
