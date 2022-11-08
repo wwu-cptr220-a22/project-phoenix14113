@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="author" content="Brian Harris">
+    <meta name="description" content="Brian's Project Webpage for CPTR 220 Web Application Development">
+    <meta name="keywords" content="Steam, Gaming, Statistics, Cool Stuff, Homework, Existential Crisis">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link href="./css-harrbr/style.css" rel="stylesheet">
+
+    <script src="https://kit.fontawesome.com/b2590d25d7.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css"
+        integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.0/normalize.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+    <link rel="icon" type="image/png" href="./img/Logo5-01.png">
+    <title>CPTR 220 Game Statistics Project</title>
+</head>
+<header>
+    <div>
+        <nav>
+            <ul aria-live="polite">
+                <li id="menu"><button type="button" title="menu"><i class="fa-solid fa-bars"></i></button></li>
+            </ul>
+        </nav>
+    </div>
+    <div>
+        <h1>Welcome to Random Steam Games!</h1>
+    </div>
+</header>
+
+<body>
+    <div class="row">
+        <div id="col-1" class="column split left">
+            <div id="description">
+                <section>
+                    <p>
+                        Here you can a random game by genre from the Steam Library from First Person Shooters to RPGs to
+                        Simulators. Simply click any one of the genre buttons and you will see a randomly chosen game
+                        from
+                        Steam's Library in the corresponding genre you chose.
+                    </p>
+                </section>
+            </div>
+            <div id="buttons">
+                <section>
+                    <ul id="genres">
+
+                    </ul>
+                </section>
+            </div>
+        </div>
+        <div id="col-2" class="column split right">
+            <table id="game-table">
+                <thead class="table-head">
+                    <tr class="table-row">
+                        <th>Title</th>
+                        <th>Cost</th>
+                        <th>Genre</th>
+                    </tr>
+                </thead>
+                <tbody class="table-body">
+                    <tr class="table-row">
+                        <td>Phasmophobia</td>
+                        <td>$13.99</td>
+                        <td>Action, Indie, Early Access</td>
+                    </tr>
+                    <tr>
+                        <td>Link to Game</td>
+                        <td id="unbordered" colspan="2"><a href="https://store.steampowered.com/app/739630/Phasmophobia/"
+                                target="_blank">https://store.steampowered.com/app/739630/Phasmophobia/</a></td>
+                    </tr>
+                </tbody>
+            </table>
+            <img id="game-img" src="./img/phasmophobia.jpg">
+        </div>
+    </div>
+</body>
+
+<footer>
+    <h1>©2020 Brian Harris, Walla Walla University</h1>
+</footer>
+<script src="js/NavBar.js"></script>
+<script src="js/RandomGame.js"></script>
+
+</html>
