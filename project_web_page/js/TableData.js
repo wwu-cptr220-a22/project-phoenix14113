@@ -51,7 +51,7 @@ function renderItems (game) {
 const URL_GAMEID_TEMPLATE = 'https://cors-anywhere.herokuapp.com/http://store.steampowered.com/api/appdetails?appids={gameId}'
 
 function fetchItems (gamesList) {
-  // use the steam id from the profile to get the actual game data 
+  // use the steam id from the profile to get the actual game data
   document.querySelector('tbody').innerHTML = ''
   gamesList.response.games.forEach((element) => {
     const url = URL_GAMEID_TEMPLATE.replace('{gameId}', element.appid)
