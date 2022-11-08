@@ -83,12 +83,20 @@ document.querySelector('#search').addEventListener('click', (event) => {
   fetchGameList(document.querySelector('input').value)
 })
 
-function renderError () {
+function renderError (error) {
+  console.log(error.message)
   const p = document.createElement('p')
   p.classList.add('alert')
   p.classList.add('alert-danger')
-
-  p.textContent = 'An error occur while trying to access this SteamID!'
+  if (error.message === 'Unexpected token \'S\', "See /corsd"... is not valid JSON') {
+    const a = document.createElement('a')
+    a.href = 'https://cors-anywhere.herokuapp.com/corsdemo'
+    a.textContent = 'Please click this link and request temporary access to use this page. Then come back to this page and refresh the page.'
+    p.appendChild(a)
+    p.style.textDecoration = 'underline'
+  } else {
+    p.textContent = 'An error occur while trying to access this SteamID!'
+  }
   document.querySelector('tbody').innerHTML = ''
   document.querySelector('tbody').appendChild(p)
 }
