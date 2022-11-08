@@ -12,7 +12,6 @@ div {
   color: white;
   margin-left: 35px;
   font-size: large;
-
 }
 
 h2 {
@@ -23,11 +22,11 @@ nav {
   position: fixed;
   top: 0;
   left: 0;
-  background-color: rgb(35, 0, 35);
+  background-color: #230023;
   height: 8%;
   width: 100%;
   padding: 1rem;
-  border: 3px solid rgb(75 0 75);
+  border: 3px solid #4B004B;
 }
 
 #menu {
@@ -36,7 +35,7 @@ nav {
 }
 
 button {
-  background-color: rgb(35, 0, 35);
+  background-color: #230023;
   color: #e7e7e7;
   border: hidden;
   transition: color 0.5s;
@@ -51,7 +50,6 @@ nav ul li {
 nav ul li a {
   transition: color 0.5s;
 }
-
 
 td a,
 nav ul li a {
@@ -120,7 +118,7 @@ body {
   position: relative;
   width: 80%;
   height: 10%;
-  background-color: rgb(35 0 35);
+  background-color: #230023;
   margin-left: 10%;
   margin-bottom: 0.5%;
 }
@@ -130,7 +128,7 @@ tr,
 th,
 td,
 #genres ul {
-  border: 3px solid rgb(75 0 75);
+  border: 3px solid #4B004B;
 }
 
 #game-img {
@@ -149,8 +147,8 @@ ul#genres li {
 
 footer {
   position: fixed;
-  background-color: rgb(35, 0, 35);
-  border: 3px solid rgb(75 0 75);
+  background-color: #230023;
+  border: 3px solid #4B004B;
   color: white;
   display: flex;
   height: 10%;

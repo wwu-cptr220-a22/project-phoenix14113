@@ -236,7 +236,7 @@ footer {
   }
 }
 
-@media (max-width: 650px) {
+@media (max-width: 750px) {
   nav {
     position: relative;
     top: 0;
