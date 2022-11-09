@@ -48,7 +48,6 @@ button {
   background-color: #1c1653;
   color: #e7e7e7;
   border: hidden;
-  transition: background-color 0.75s;
 }
 
 i {
@@ -237,7 +236,7 @@ footer {
   }
 }
 
-@media (max-width: 650px) {
+@media (max-width: 750px) {
   nav {
     position: relative;
     top: 0;

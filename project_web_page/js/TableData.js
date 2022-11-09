@@ -48,19 +48,14 @@ function renderItems (game) {
   }
 }
 
-const URL_GAMEID_TEMPLATE = 'http://store.steampowered.com/api/appdetails?appids={gameId}'
+const URL_GAMEID_TEMPLATE = 'https://cors-anywhere.herokuapp.com/http://store.steampowered.com/api/appdetails?appids={gameId}'
 
 function fetchItems (gamesList) {
   // use the steam id from the profile to get the actual game data
   document.querySelector('tbody').innerHTML = ''
   gamesList.response.games.forEach((element) => {
     const url = URL_GAMEID_TEMPLATE.replace('{gameId}', element.appid)
-    const promise = fetch(url, {
-      mode: 'cors',
-      headers: {
-        'Access-Control-Allow-Origin': '*'
-      }
-    }).then((response) => {
+    const promise = fetch(url).then((response) => {
       return response.json()
     }).then(renderItems)
       .catch(renderError)
@@ -68,17 +63,11 @@ function fetchItems (gamesList) {
   })
 }
 
-const URL_USERID_TEMPLATE = 'https://api.steampowered.com/IPlayerService/GetOwnedGames/v1/?key=781B096A18E5438AAA028E11D22B796E&steamid={steamId}'
+const URL_USERID_TEMPLATE = 'https://cors-anywhere.herokuapp.com/https://api.steampowered.com/IPlayerService/GetOwnedGames/v1/?key=781B096A18E5438AAA028E11D22B796E&steamid={steamId}'
 function fetchGameList (steamId) {
   // collect all games from a user's library
   const url = URL_USERID_TEMPLATE.replace('{steamId}', steamId)
-  const promise = fetch(url, {
-    mode: 'cors',
-    headers: {
-      'Access-Control-Allow-Origin': '*'
-    }
-  }).then((response) => {
-    console.log(response)
+  const promise = fetch(url).then((response) => {
     return response.json()
   }).then(fetchItems)
     .catch(renderError)
@@ -94,12 +83,20 @@ document.querySelector('#search').addEventListener('click', (event) => {
   fetchGameList(document.querySelector('input').value)
 })
 
-function renderError () {
+function renderError (error) {
+  console.log(error.message)
   const p = document.createElement('p')
   p.classList.add('alert')
   p.classList.add('alert-danger')
-
-  p.textContent = 'An error occur while trying to access this SteamID!'
+  if (error.message === 'Unexpected token \'S\', "See /corsd"... is not valid JSON') {
+    const a = document.createElement('a')
+    a.href = 'https://cors-anywhere.herokuapp.com/corsdemo'
+    a.textContent = 'Please click this link and request temporary access to use this page. Then come back to this page and refresh the page.'
+    p.appendChild(a)
+    p.style.textDecoration = 'underline'
+  } else {
+    p.textContent = 'An error occur while trying to access this SteamID!'
+  }
   document.querySelector('tbody').innerHTML = ''
   document.querySelector('tbody').appendChild(p)
 }
