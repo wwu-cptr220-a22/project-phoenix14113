@@ -58,7 +58,7 @@ function fetchItems (gamesList) {
     const promise = fetch(url, {
       mode: 'cors',
       headers: {
-        'Access-Control-Allow-Origin':'*'
+        'Access-Control-Allow-Origin': '*'
       }
     }).then((response) => {
       return response.json()
@@ -75,7 +75,7 @@ function fetchGameList (steamId) {
   const promise = fetch(url, {
     mode: 'cors',
     headers: {
-      'Access-Control-Allow-Origin':'*'
+      'Access-Control-Allow-Origin': '*'
     }
   }).then((response) => {
     console.log(response)
