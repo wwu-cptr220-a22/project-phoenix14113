@@ -48,7 +48,6 @@ button {
   background-color: #1c1653;
   color: #e7e7e7;
   border: hidden;
-  transition: background-color 0.75s;
 }
 
 i {
@@ -225,14 +224,23 @@ footer {
   }
 }
 
-@media (max-width: 550px) {
+@media (max-width: 575px) {
   table thead {
     display: none;
   }
 
+  td {
+    display: block;
+    width: 80%;
+    background-color: #10477a;
+  }
+}
+
+@media (max-width: 750px) {
   nav {
     position: relative;
     top: 0;
+    width: auto;
   }
 
   li {
@@ -244,15 +252,10 @@ footer {
     margin-top: 1em;
   }
 
-  td {
-    display: block;
-    width: 80%;
-    background-color: #10477a;
-  }
-
   footer {
     margin-top: 200px;
     position: relative;
+    width: auto;
   }
 }
 

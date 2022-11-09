@@ -56,7 +56,9 @@ function createNavBar () {
   // add Sales Table navigation link
   createLI('./GamesTable.html', 'Sales\xa0Table', false)
 
-  createLI('./stats.html', 'Stats', false)
+  createLI('./stats.html', 'Stats\xa0Table', false)
+
+  createLI('./RandomGame.html', 'Random\xa0Game', false)
   // add About Us navigation link
   createLI('./AboutTheTeam.html', 'About\xa0Us', false)
 }
