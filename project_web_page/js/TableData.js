@@ -80,7 +80,19 @@ document.querySelector('#search').addEventListener('click', (event) => {
   // collect SteamID
   event.preventDefault()
   event.stopPropagation()
-  fetchGameList(document.querySelector('input').value)
+  if(/^\d+$/.test(document.querySelector('input').value)){
+    fetchGameList(document.querySelector('input').value)
+  } else {
+    // Eddie url check https://steamcommunity.com/id/british_waffle/
+    const URL_USERID_TEMPLATE = 'https://cors-anywhere.herokuapp.com/http://api.steampowered.com/ISteamUser/ResolveVanityURL/v0001/?key=781B096A18E5438AAA028E11D22B796E&vanityurl={vanityurl}'
+    const url = URL_USERID_TEMPLATE.replace('{vanityurl}', document.querySelector('input').value)
+    const promise = fetch(url).then((response) => {
+      return response.json()
+    }).catch(renderError)
+    console.log(promise)
+    console.log(Object.keys(promise))
+
+  }
 })
 
 function renderError (error) {
