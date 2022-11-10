@@ -53,6 +53,11 @@ const URL_GAMEID_TEMPLATE = 'https://cors-anywhere.herokuapp.com/http://store.st
 function fetchItems (gamesList) {
   // use the steam id from the profile to get the actual game data
   document.querySelector('tbody').innerHTML = ''
+  console.log(gamesList.response.games)
+  if (gamesList.response.games === undefined) {
+    renderError(new Error("There don't appear to be any games in this library."))
+    return
+  }
   gamesList.response.games.forEach((element) => {
     const url = URL_GAMEID_TEMPLATE.replace('{gameId}', element.appid)
     const promise = fetch(url).then((response) => {
@@ -65,6 +70,7 @@ function fetchItems (gamesList) {
 
 const URL_USERID_TEMPLATE = 'https://cors-anywhere.herokuapp.com/https://api.steampowered.com/IPlayerService/GetOwnedGames/v1/?key=781B096A18E5438AAA028E11D22B796E&steamid={steamId}'
 function fetchGameList (steamId) {
+  console.log(steamId)
   // collect all games from a user's library
   const url = URL_USERID_TEMPLATE.replace('{steamId}', steamId)
   const promise = fetch(url).then((response) => {
@@ -83,15 +89,13 @@ document.querySelector('#search').addEventListener('click', (event) => {
   if(/^\d+$/.test(document.querySelector('input').value)){
     fetchGameList(document.querySelector('input').value)
   } else {
-    // Eddie url check https://steamcommunity.com/id/british_waffle/
+    // Eddie url check british_waffle
     const URL_USERID_TEMPLATE = 'https://cors-anywhere.herokuapp.com/http://api.steampowered.com/ISteamUser/ResolveVanityURL/v0001/?key=781B096A18E5438AAA028E11D22B796E&vanityurl={vanityurl}'
     const url = URL_USERID_TEMPLATE.replace('{vanityurl}', document.querySelector('input').value)
     const promise = fetch(url).then((response) => {
       return response.json()
-    }).catch(renderError)
-    console.log(promise)
-    console.log(Object.keys(promise))
-
+    }).then((data) => {fetchGameList(data.response.steamid)}).catch(renderError)
+    return promise
   }
 })
 
@@ -106,7 +110,9 @@ function renderError (error) {
     a.textContent = 'Please click this link and request temporary access to use this page. Then come back to this page and refresh the page.'
     p.appendChild(a)
     p.style.textDecoration = 'underline'
-  } else {
+  } else if (error.message === "There don't appear to be any games in this library.") {
+    p.textContent = error.message
+  }else {
     p.textContent = 'An error occur while trying to access this SteamID!'
   }
   document.querySelector('tbody').innerHTML = ''
