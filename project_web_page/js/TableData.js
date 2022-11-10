@@ -1,5 +1,7 @@
+// https://cors-anywhere.herokuapp.com/ has been prepended to each API link
+// so that the link redirects through a proxy server to avoid CORS errors
+// that the steam API throws for not being a secure access.
 
-// "https://cdn.cloudflare.steamstatic.com/steam/apps/1252330/header.jpg"
 function renderItems (game) {
   const objectKey = Object.keys(game)
   // if the game in question has been loaded successfully
@@ -54,10 +56,13 @@ function fetchItems (gamesList) {
   // use the steam id from the profile to get the actual game data
   document.querySelector('tbody').innerHTML = ''
   console.log(gamesList.response.games)
+
+  // throw an error if there are no games in their library
   if (gamesList.response.games === undefined) {
     renderError(new Error("There don't appear to be any games in this library."))
     return
   }
+  // colect each game from their library and render it
   gamesList.response.games.forEach((element) => {
     const url = URL_GAMEID_TEMPLATE.replace('{gameId}', element.appid)
     const promise = fetch(url).then((response) => {
@@ -86,33 +91,39 @@ document.querySelector('#search').addEventListener('click', (event) => {
   // collect SteamID
   event.preventDefault()
   event.stopPropagation()
-  if(/^\d+$/.test(document.querySelector('input').value)){
+  if (/^\d+$/.test(document.querySelector('input').value)) {
+    // if the input value is a number exclusively go straight to collecting
+    // the library
     fetchGameList(document.querySelector('input').value)
   } else {
-    // Eddie url check british_waffle
+    // if there is a string it means that a custom url was entered which means
+    // that the SteamId must be decoded from the url
     const URL_USERID_TEMPLATE = 'https://cors-anywhere.herokuapp.com/http://api.steampowered.com/ISteamUser/ResolveVanityURL/v0001/?key=781B096A18E5438AAA028E11D22B796E&vanityurl={vanityurl}'
     const url = URL_USERID_TEMPLATE.replace('{vanityurl}', document.querySelector('input').value)
     const promise = fetch(url).then((response) => {
       return response.json()
-    }).then((data) => {fetchGameList(data.response.steamid)}).catch(renderError)
+    }).then((data) => { fetchGameList(data.response.steamid) }).catch(renderError)
     return promise
   }
 })
 
 function renderError (error) {
-  console.log(error.message)
+  // make an error message element
   const p = document.createElement('p')
   p.classList.add('alert')
   p.classList.add('alert-danger')
   if (error.message === 'Unexpected token \'S\', "See /corsd"... is not valid JSON') {
+    // error message for not accepting the proxy services
     const a = document.createElement('a')
     a.href = 'https://cors-anywhere.herokuapp.com/corsdemo'
     a.textContent = 'Please click this link and request temporary access to use this page. Then come back to this page and refresh the page.'
     p.appendChild(a)
     p.style.textDecoration = 'underline'
   } else if (error.message === "There don't appear to be any games in this library.") {
+    // error for no games owned
     p.textContent = error.message
-  }else {
+  } else {
+    // error for not putting valid SteamId
     p.textContent = 'An error occur while trying to access this SteamID!'
   }
   document.querySelector('tbody').innerHTML = ''
