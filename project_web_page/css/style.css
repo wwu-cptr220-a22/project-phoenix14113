@@ -93,6 +93,10 @@ p {
   box-shadow: 0 2px 5px rgba(0 0 0 / 16%), 0 2px 5px rgba(0 0 0 / 23%);
 }
 
+#before-table {
+  margin-top: 20px;
+}
+
 h2 {
   width: 70%;
   margin-left: 8%;
