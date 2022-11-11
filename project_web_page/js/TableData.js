@@ -1,6 +1,24 @@
 // https://cors-anywhere.herokuapp.com/ has been prepended to each API link
 // so that the link redirects through a proxy server to avoid CORS errors
 // that the steam API throws for not being a secure access.
+let progressNeeded = 0
+let currentProgress = 0
+function percentConverter (value) {
+  return String((value * 100).toFixed(0))
+}
+
+function createProgressBar () {
+  const progressBar = document.createElement('div')
+  progressBar.classList.add('progress-bar')
+  progressBar.role = 'progressbar'
+  progressBar.setAttribute('aria-valuenow', '0')
+  progressBar.setAttribute('aria-valuemin', '0')
+  progressBar.setAttribute('aria-valuemax', '100')
+  progressBar.style.width = '0%'
+  const progressContainer = document.createElement('div')
+  progressContainer.appendChild(progressBar)
+  document.querySelector('#before-table').appendChild(progressContainer)
+}
 
 function renderItems (game) {
   const objectKey = Object.keys(game)
@@ -48,6 +66,9 @@ function renderItems (game) {
       document.querySelector('tbody').appendChild(tr)
     }
   }
+  //currentProgress += 1
+  //document.querySelector('.progress-bar').setAttribute('aria-valuenow', percentConverter(currentProgress / progressNeeded))
+  //document.querySelector('.progress-bar').style.width = percentConverter(currentProgress / progressNeeded) + '%'
 }
 
 const URL_GAMEID_TEMPLATE = 'https://cors-anywhere.herokuapp.com/http://store.steampowered.com/api/appdetails?appids={gameId}'
@@ -62,6 +83,12 @@ function fetchItems (gamesList) {
     renderError(new Error("There don't appear to be any games in this library."))
     return
   }
+  
+  // show interactive progress
+  //progressNeeded = gamesList.response.games.length
+  //currentProgress = 0
+  //createProgressBar()
+
   // colect each game from their library and render it
   gamesList.response.games.forEach((element) => {
     const url = URL_GAMEID_TEMPLATE.replace('{gameId}', element.appid)
@@ -75,14 +102,12 @@ function fetchItems (gamesList) {
 
 const URL_USERID_TEMPLATE = 'https://cors-anywhere.herokuapp.com/https://api.steampowered.com/IPlayerService/GetOwnedGames/v1/?key=781B096A18E5438AAA028E11D22B796E&steamid={steamId}'
 function fetchGameList (steamId) {
-  console.log(steamId)
   // collect all games from a user's library
   const url = URL_USERID_TEMPLATE.replace('{steamId}', steamId)
   const promise = fetch(url).then((response) => {
     return response.json()
   }).then(fetchItems)
     .catch(renderError)
-
   return promise
 }
 
