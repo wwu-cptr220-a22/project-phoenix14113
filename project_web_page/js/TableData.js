@@ -76,7 +76,6 @@ const URL_GAMEID_TEMPLATE = 'https://cors-anywhere.herokuapp.com/http://store.st
 function fetchItems (gamesList) {
   // use the steam id from the profile to get the actual game data
   document.querySelector('tbody').innerHTML = ''
-  console.log(gamesList.response.games)
 
   // throw an error if there are no games in their library
   if (gamesList.response.games === undefined) {
@@ -144,7 +143,7 @@ function renderError (error) {
     a.textContent = 'Please click this link and request temporary access to use this page. Then come back to this page and refresh the page.'
     p.appendChild(a)
     p.style.textDecoration = 'underline'
-  } else if (error.message === "There don't appear to be any games in this library.") {
+  } else if (error.message === "There don't appear to be any games in this library or the profile you tried to access has game details on private.") {
     // error for no games owned
     p.textContent = error.message
   } else {
