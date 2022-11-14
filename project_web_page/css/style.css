@@ -48,6 +48,7 @@ button {
   background-color: #1c1653;
   color: #e7e7e7;
   border: hidden;
+  transition: background-color 0.75s;
 }
 
 i {
@@ -90,6 +91,10 @@ p {
   padding: 25px 30px;
   margin-top: 10px;
   box-shadow: 0 2px 5px rgba(0 0 0 / 16%), 0 2px 5px rgba(0 0 0 / 23%);
+}
+
+#before-table {
+  margin-top: 20px;
 }
 
 h2 {

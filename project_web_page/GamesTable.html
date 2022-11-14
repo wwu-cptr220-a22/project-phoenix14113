@@ -11,6 +11,7 @@
   <link rel="icon" type="image/png" href="./img/Logo5-01.png">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.0/normalize.min.css">
   <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/bootstrap.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
   <meta name="author" content="Adam Taylor">
   <!-- API site: https://steamapis.com/docs/market -->
@@ -31,14 +32,14 @@
     database.
   </p>
   <p class="table-description">
-    In order to use this service you need your or your friend's SteamID. You can find this by going to their steam
+    In order to use this service you need your or your friend's SteamID or custom URL. You can find this by going to their steam
     profile website and then copying the last field in the url. Most of the time this will be a long number but it could
     be a phrase if you or your friend changed it.
   </p>
   <h2>Sales Table</h2>
   <form class="form-inline" method="GET" action="https://api.steampowered.com">
     <div class="form-group mr-3">
-      <label for="search-query" class="mr-2">Please enter the SteamID of the play's games you would like to
+      <label for="search-query" class="mr-2">Please enter the SteamID of the player whose games you would like to
         search?</label>
       <input type="text" name="term" id="search-query" class="form-control">
     </div>
@@ -46,6 +47,7 @@
       Search!
     </button>
     <input type="hidden" name="entity" value="SteamID"> <!-- extra form param -->
+  <div id="before-table"></div>
   </form>
   <table>
     <thead>
