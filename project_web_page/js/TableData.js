@@ -141,7 +141,7 @@ function renderError (error) {
   p.classList.add('alert')
   p.classList.add('alert-danger')
   console.log(error.message)
-  if (error.message === 'Unexpected token \'S\', "See /corsd"... is not valid JSON' || error.message === "JSON.parse: unexpected character at line 1 column 1 of the JSON data") {
+  if (error.message === 'Unexpected token \'S\', "See /corsd"... is not valid JSON' || error.message === 'JSON.parse: unexpected character at line 1 column 1 of the JSON data') {
     // error message for not accepting the proxy services
     const a = document.createElement('a')
     a.href = 'https://cors-anywhere.herokuapp.com/corsdemo'
