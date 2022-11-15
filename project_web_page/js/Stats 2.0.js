@@ -10,32 +10,20 @@ let userList = []
 function buildLeaderboard () {
 
   const tbody = document.querySelector('tbody')
-  const categories = document.createElement('tr')
-
-  const rank = document.createElement('td')
-  rank.textContent = 'Rank'
-  const username = document.createElement('td')
-  username.textContent = 'Username'
-  const timePlayed = document.createElement('td')
-  timePlayed.textContent = 'Time Played'
-  const achievements = document.createElement('td')
-  achievements.textContent = 'Achievements'
-
-  categories.appendChild(rank)
-  categories.appendChild(username)
-  categories.appendChild(timePlayed)
-  categories.appendChild(achievements)
-  tbody.appendChild(categories)
+  tbody.innerHTML = ''
+  let counter = 1
 
   userList.forEach((element) => {
     const userRow = document.createElement('tr')
     const userRank = document.createElement('td')
-    userRank.textContent = '1'
-    const userUsername = document.querySelector('td')
-    userUsername.textContent = element
+    console.log(element)
+    userRank.textContent = counter
+    counter++
+    const userUsername = document.createElement('td')
+    userUsername.textContent = element['Player Name']
     const userTimePlayed = document.createElement('td')
-    userTimePlayed.textContent = '0h 00m'
-    const userAchievements = document.querySelector('td')
+    userTimePlayed.textContent = element['Time Played']
+    const userAchievements = document.createElement('td')
     userAchievements.textContent = '0/100'
 
     userRow.appendChild(userRank)
@@ -48,14 +36,12 @@ function buildLeaderboard () {
 }
 
 // MAKES THE MAGNIFYING GLASS SEARCH BOX DO STUFF
-const button = document.querySelector('.fa-search')
+const button = document.querySelector('#friend-finder')
 // Collect user ID
 button.addEventListener('click', (event) => {
   event.preventDefault()
   event.stopPropagation()
   const input = document.querySelector('input')
-  userList.push(input)
-  console.log(userList) //-------------------------------------
   if (/^\d+$/.test(input.value)) {
     fetchGameList(input.value)
   } else {
@@ -64,9 +50,9 @@ button.addEventListener('click', (event) => {
     const promise = fetch(url).then((response) => {
       return response.json()
     }).then((data) => { fetchGameList(data.response.steamid) }).catch(renderError)
+    userList.push(input.value)
     return promise
   }
-  document.querySelector('tbody').innerHTML = ''
   buildLeaderboard()
 })
 
@@ -75,7 +61,9 @@ function fetchGameList (steamId) {
   const url = URL_USERID_TEMPLATE.replace('{steamId}', steamId)
   const promise = fetch(url).then((response) => {
     return response.json()
-  }).then(fetchItems)
+  }).then((data) => {
+    return fetchItems(data, steamId)
+  })
     .catch(renderError)
   return promise
 }
@@ -103,30 +91,36 @@ function renderError (error) {
   // document.querySelector('tbody').appendChild(p)------------------------
 }
 
-function fetchItems (gamesList) {
+function fetchItems (gamesList, steamId) {
   // use the steam id from the profile to get the actual game data
   // document.querySelector('tbody').innerHTML = ''------------------------
   console.log(gamesList.response.games)
+  const playerInfo = {}
+
+  // colect each game from their library and render it
+  gamesList.response.games.forEach((element) => {
+    if (element.appid === 252950) {
+      let playHours = element.playtime_forever / 60
+      let playMinutes = (playHours - Math.round(playHours)) * 60
+      const playTime = playHours.toFixed(0) + 'h ' + playMinutes.toFixed(0) + 'm'
+      playerInfo['Time Played'] = playTime
+      // console.log(playHours.toFixed(2))
+      // console.log(playHours.toFixed(0) + 'h ' + playMinutes.toFixed(0) + 'm')
+    }
+  })
+
+  const URL_USERNAME_TEMPLATE = 'https://cors-anywhere.herokuapp.com/https://api.steampowered.com/ISteamUser/GetPlayerSummaries/v0002/?key=781B096A18E5438AAA028E11D22B796E&steamids={steamIds}'
+  const url = URL_USERNAME_TEMPLATE.replace('{steamIds}', '[' + steamId + ']')
+  const promise = fetch(url).then((response) => {
+    return (response.json())
+  }).then((data) => {
+    playerInfo['Player Name'] = data.response.players[0].personaname
+  })
 
   // throw an error if there are no games in their library
   if (gamesList.response.games === undefined) {
     renderError(new Error("There don't appear to be any games in this library."))
     return
   }
-
-  // show interactive progress
-  progressNeeded = gamesList.response.games.length
-  currentProgress = 0
-  document.querySelector('#before-table').innerHTML = ''
-  createProgressBar()
-
-  // colect each game from their library and render it
-  gamesList.response.games.forEach((element) => {
-    const url = URL_GAMEID_TEMPLATE.replace('{gameId}', element.appid)
-    const promise = fetch(url).then((response) => {
-      return response.json()
-    }).then(renderItems)
-      .catch(renderError)
-    return promise
-  })
+  userList.push(playerInfo)
 }

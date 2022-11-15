@@ -32,7 +32,7 @@
     <div class="search-box" role="search" aria-label="search for friends">
 
       <input type="text" title="add friend" placeholder="Add Friend...">
-      <button><i class="fa fa-search" aria-label="search"></i></button>
+      <button id="friend-finder"><i class="fa fa-search" aria-label="search"></i></button>
     </div>
 
     <div class="leaderboard">
@@ -44,8 +44,20 @@
           Game: <i>Rocket League (for now)</i>
         </h3>
       </div>
-      <table id='leaderboard' aria-label="leaderboard">
+      <table id="leaderboard" aria-label="leaderboard">
+        <thead>
+          <th>Rank</th>
+          <th>Username</th>
+          <th>Time Played</th>
+          <th>Achievements</th>
+        </thead>
         <tbody>
+          <!-- <tr>
+            <td>Rank</td>
+            <td>Username</td>
+            <td>Time Played</td>
+            <td>Achievements</td>
+          </tr> -->
         </tbody>
       </table>
     </div>
