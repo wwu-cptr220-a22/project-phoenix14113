@@ -141,14 +141,14 @@ function renderError (error) {
   p.classList.add('alert')
   p.classList.add('alert-danger')
   console.log(error.message)
-  if (error.message === 'Unexpected token \'S\', "See /corsd"... is not valid JSON') {
+  if (error.message === 'Unexpected token \'S\', "See /corsd"... is not valid JSON' || error.message === "JSON.parse: unexpected character at line 1 column 1 of the JSON data") {
     // error message for not accepting the proxy services
     const a = document.createElement('a')
     a.href = 'https://cors-anywhere.herokuapp.com/corsdemo'
     a.textContent = 'Please click this link and request temporary access to use this page. Then come back to this page and refresh the page.'
     p.appendChild(a)
     p.style.textDecoration = 'underline'
-  } else if (error.message === "There don't appear to be any games in this library." || error.message === "JSON.parse: unexpected character at line 1 column 1 of the JSON data") {
+  } else if (error.message === "There don't appear to be any games in this library.") {
     // error for no games owned
     p.textContent = error.message
   } else {
