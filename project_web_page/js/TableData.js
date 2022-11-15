@@ -79,7 +79,6 @@ const URL_GAMEID_TEMPLATE = 'https://cors-anywhere.herokuapp.com/http://store.st
 function fetchItems (gamesList) {
   // use the steam id from the profile to get the actual game data
   document.querySelector('tbody').innerHTML = ''
-  console.log(gamesList.response.games)
 
   // throw an error if there are no games in their library
   if (gamesList.response.games === undefined) {
@@ -141,7 +140,8 @@ function renderError (error) {
   const p = document.createElement('p')
   p.classList.add('alert')
   p.classList.add('alert-danger')
-  if (error.message === 'Unexpected token \'S\', "See /corsd"... is not valid JSON') {
+  console.log(error.message)
+  if (error.message === 'Unexpected token \'S\', "See /corsd"... is not valid JSON' || error.message === 'JSON.parse: unexpected character at line 1 column 1 of the JSON data') {
     // error message for not accepting the proxy services
     const a = document.createElement('a')
     a.href = 'https://cors-anywhere.herokuapp.com/corsdemo'
