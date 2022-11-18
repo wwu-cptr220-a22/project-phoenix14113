@@ -23,12 +23,13 @@ describe('Source code is valid', () => {
 
     const htmlfiles = fs.readdirSync(__dirname).filter((f) => f.endsWith('.html'))
     for (const f of htmlfiles) {
-      await expect(f).toHaveNoHtmlLintErrorsAsync(lintOpts)
+      console.log(__dirname + '/' + f)
+      await expect(__dirname + '/' + f).toHaveNoHtmlLintErrorsAsync(lintOpts)
     }
   })
 
   test('CSS validates without errors', async () => {
-    await expect('css/*.css').toHaveNoCssLintErrorsAsync() // test all files in css folder
+    await expect(__dirname +'/css/*.css').toHaveNoCssLintErrorsAsync() // test all files in css folder
   })
 
   test('JavaScript lints without errors', () => {
