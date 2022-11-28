@@ -38,9 +38,9 @@ describe('Source code is valid', () => {
   })
 
   test('CSS validates without errors', async () => {
-    await expect(__dirname +'/css/*.css').toHaveNoCssLintErrorsAsync() // test all files in css folder
-    await expect(__dirname +'/css-emcoberly/*.css').toHaveNoCssLintErrorsAsync() // test all files in css folder
-    await expect(__dirname +'/css-harrbr/*.css').toHaveNoCssLintErrorsAsync() // test all files in css folder
+    await expect(__dirname +'/css/style.css').toHaveNoCssLintErrorsAsync() // test all files in css folder
+    await expect(__dirname +'/css-emcoberly/style.css').toHaveNoCssLintErrorsAsync() // test all files in css folder
+    await expect(__dirname +'/css-harrbr/style.css').toHaveNoCssLintErrorsAsync() // test all files in css folder
    })
 
   test('JavaScript lints without errors', () => {
