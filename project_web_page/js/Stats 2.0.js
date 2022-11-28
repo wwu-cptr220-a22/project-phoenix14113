@@ -3,12 +3,11 @@
 const URL_USERID_TEMPLATE = 'https://cors-anywhere.herokuapp.com/https://api.steampowered.com/IPlayerService/GetOwnedGames/v1/?key=781B096A18E5438AAA028E11D22B796E&steamid={steamId}'
 const URL_GAMEID_TEMPLATE = 'https://cors-anywhere.herokuapp.com/http://store.steampowered.com/api/appdetails?appids={gameId}'
 const URL_CUSTOMID_TEMPLATE = 'https://cors-anywhere.herokuapp.com/http://api.steampowered.com/ISteamUser/ResolveVanityURL/v0001/?key=781B096A18E5438AAA028E11D22B796E&vanityurl={vanityurl}'
-let userList = []
+const userList = []
 
 // MY USER ID IS 76561198416262376
 
 function buildLeaderboard () {
-
   const tbody = document.querySelector('tbody')
   tbody.innerHTML = ''
   let counter = 1
@@ -100,8 +99,8 @@ function fetchItems (gamesList, steamId) {
   // colect each game from their library and render it
   gamesList.response.games.forEach((element) => {
     if (element.appid === 252950) {
-      let playHours = element.playtime_forever / 60
-      let playMinutes = (playHours - Math.round(playHours)) * 60
+      const playHours = element.playtime_forever / 60
+      const playMinutes = (playHours - Math.round(playHours)) * 60
       const playTime = playHours.toFixed(0) + 'h ' + playMinutes.toFixed(0) + 'm'
       playerInfo['Time Played'] = playTime
       // console.log(playHours.toFixed(2))

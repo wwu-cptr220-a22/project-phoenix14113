@@ -32,8 +32,8 @@ function getRocketLeague (data) {
   data.response.games.forEach((element) => {
     // Rocket League ID: 252950
     if (element.appid === 105600) {
-      let playHours = element.playtime_forever / 60
-      let playMinutes = (playHours - Math.round(playHours)) * 60
+      const playHours = element.playtime_forever / 60
+      const playMinutes = (playHours - Math.round(playHours)) * 60
       console.log(playHours.toFixed(2))
       console.log(playHours.toFixed(0) + 'h ' + playMinutes.toFixed(0) + 'm')
     }
@@ -50,7 +50,6 @@ function friendGames (steamId) {
   }).then(friendListProcessor).catch(renderError)
   console.log(promise)
   return promise
-  
 }
 friendGames('76561198239932484')
 
@@ -91,4 +90,3 @@ function renderError (error) {
 }
 
 fetchGameList('76561198239932484')
-

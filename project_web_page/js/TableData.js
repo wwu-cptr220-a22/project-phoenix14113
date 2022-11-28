@@ -116,7 +116,9 @@ function fetchGameList (steamId) {
   return promise
 }
 
+// run the program to have an initial population of games on the screen
 fetchGameList('76561198239932484')
+
 document.querySelector('#search').addEventListener('click', (event) => {
   // collect SteamID
   event.preventDefault()
