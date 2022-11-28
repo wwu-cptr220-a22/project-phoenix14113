@@ -1,9 +1,12 @@
 'use strict'
+// https://cors-anywhere.herokuapp.com/ has been prepended to each API link
+// so that the link redirects through a proxy server to avoid CORS errors
+// that the steam API throws for not being a secure access.
 
 const URL_USERID_TEMPLATE = 'https://cors-anywhere.herokuapp.com/https://api.steampowered.com/IPlayerService/GetOwnedGames/v1/?key=781B096A18E5438AAA028E11D22B796E&steamid={steamId}'
 const URL_GAMEID_TEMPLATE = 'https://cors-anywhere.herokuapp.com/http://store.steampowered.com/api/appdetails?appids={gameId}'
 const URL_CUSTOMID_TEMPLATE = 'https://cors-anywhere.herokuapp.com/http://api.steampowered.com/ISteamUser/ResolveVanityURL/v0001/?key=781B096A18E5438AAA028E11D22B796E&vanityurl={vanityurl}'
-const URL_ACHIEVEMENTS_TEMPLATE = 'https://cors-anywhere.herokuapp.com/http://api.steampowered.com/ISteamUserStats/GetPlayerAchievements/v0001/?appid=440&key=781B096A18E5438AAA028E11D22B796E&steamid={steamId}'
+const URL_ACHIEVEMENTS_TEMPLATE = 'https://cors-anywhere.herokuapp.com/http://api.steampowered.com/ISteamUserStats/GetPlayerAchievements/v0001/?appid=252950&key=781B096A18E5438AAA028E11D22B796E&steamid={steamId}'
 let userList = []
 
 // MY USER ID IS 76561198416262376
@@ -18,13 +21,11 @@ function buildLeaderboard () {
   userList.forEach((element) => {
     const userRow = document.createElement('tr')
     const userRank = document.createElement('td')
-    console.log(element)
     userRank.textContent = element.playerRank
     const userUsername = document.createElement('td')
     userUsername.textContent = element.playerName
 
     const userTimePlayed = document.createElement('td')
-    console.log(element)
     let playHours = element.timePlayed / 60
     let playMinutes = (playHours - Math.round(playHours)) * 60
     const newPlayTime = playHours.toFixed(0) + 'h ' + playMinutes.toFixed(0) + 'm'
@@ -63,7 +64,7 @@ function sortByAchievements (oldUserList) {
   })
 
   // sort the value rows
-  valid.sort(function(a , b){ return a - b })
+  valid.sort(function (a , b) { return (a - b) })
   valid.forEach((sorted_element) => {
     for (let i = 0; i < oldUserList.length; i++) {
       if (oldUserList[i].achievementsEarned === sorted_element) {
@@ -86,10 +87,11 @@ function sortByAchievements (oldUserList) {
     element.playerRank = counter
     newUserList.push(element)
   })
-
+  
   userList = newUserList
 }
 
+// sort the rows by time played
 function sortByTimePlayed (oldUserList) {
 
   const newUserList = []
@@ -99,7 +101,7 @@ function sortByTimePlayed (oldUserList) {
     minutes_list.push(element.timePlayed)
   })
 
-  minutes_list.sort(function(a , b){ return a - b })
+  minutes_list.sort(function (a , b) { return (a - b) })
   minutes_list.forEach((sorted_element) => {
     for (let i = 0; i < oldUserList.length; i++) {
       if (oldUserList[i].timePlayed === sorted_element) {
@@ -110,6 +112,7 @@ function sortByTimePlayed (oldUserList) {
     }
   })
 
+  
   let counter = 1
   newUserList.forEach((element, index) => {
     element.playerRank = counter
@@ -121,28 +124,27 @@ function sortByTimePlayed (oldUserList) {
   userList = newUserList
 }
 
-// MAKES THE MAGNIFYING GLASS SEARCH BOX DO STUFF
-const search_button = document.querySelector('#friend-finder')
+const button = document.querySelector('#friend-finder')
 // Collect user ID
-search_button.addEventListener('click', (event) => {
+button.addEventListener('click', (event) => {
+  // collect SteamID
   event.preventDefault()
   event.stopPropagation()
-  const input = document.querySelector('input')
-  if (input.value === '') {
-    renderError(new Error('Please enter a valid username or ID number.'))
-    return
-  }
-  if (/^\d+$/.test(input.value)) {
-    fetchGameList(input.value)
+  if (/^\d+$/.test(document.querySelector('input').value)) {
+    // if the input value is a number exclusively go straight to collecting
+    // the library
+    fetchGameList(document.querySelector('input').value)
   } else {
-    const URL_USERID_TEMPLATE = 'https://cors-anywhere.herokuapp.com/http://api.steampowered.com/ISteamUser/ResolveVanityURL/v0001/?key=781B096A18E5438AAA028E11D22B796E&vanityurl={vanityurl}'
-    const url = URL_USERID_TEMPLATE.replace('{vanityurl}', input.value)
+    // if there is a string it means that a custom url was entered which means
+    // that the SteamId must be decoded from the url
+    const URL_USER_ID_TEMPLATE = 'https://cors-anywhere.herokuapp.com/http://api.steampowered.com/ISteamUser/ResolveVanityURL/v0001/?key=781B096A18E5438AAA028E11D22B796E&vanityurl={vanityurl}'
+    const url = URL_USER_ID_TEMPLATE.replace('{vanityurl}', document.querySelector('input').value)
     const promise = fetch(url).then((response) => {
       return response.json()
     }).then((data) => { fetchGameList(data.response.steamid) }).catch(renderError)
-    userList.push(input.value)
     return promise
   }
+  buildLeaderboard()
 })
 
 const achievement_button = document.querySelector('#achievement-sort')
@@ -161,6 +163,7 @@ time_played_button.addEventListener('click', (event) => {
 
 function fetchGameList (steamId) {
   // collect all games from a user's library
+  const URL_USERID_TEMPLATE = 'https://cors-anywhere.herokuapp.com/https://api.steampowered.com/IPlayerService/GetOwnedGames/v1/?key=781B096A18E5438AAA028E11D22B796E&steamid={steamId}'
   const url = URL_USERID_TEMPLATE.replace('{steamId}', steamId)
   const promise = fetch(url).then((response) => {
     return response.json()
@@ -212,6 +215,7 @@ function fetchItems (gamesList, steamId) {
   const promise_achievements = fetch(url_achievements).then((response) => {
     return (response.json())
   }).then((data) => {
+    console.log(data)
     if (data.playerstats.success === false) {
       playerInfo['achievementsEarned'] = 'N/A'
       playerInfo['achievementsTotal'] = 'N/A'
@@ -240,6 +244,5 @@ function fetchItems (gamesList, steamId) {
   }
 
   playerInfo['playerRank'] = ''
-
   userList.push(playerInfo)
 }

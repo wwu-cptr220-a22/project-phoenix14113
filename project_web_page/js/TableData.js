@@ -1,3 +1,4 @@
+'use strict'
 // https://cors-anywhere.herokuapp.com/ has been prepended to each API link
 // so that the link redirects through a proxy server to avoid CORS errors
 // that the steam API throws for not being a secure access.
@@ -74,7 +75,7 @@ function renderItems (game) {
   document.querySelector('.progress-bar').style.width = percentConverter(currentProgress / progressNeeded) + '%'
 }
 
-const URL_GAMEID_TEMPLATE = 'https://cors-anywhere.herokuapp.com/http://store.steampowered.com/api/appdetails?appids={gameId}'
+const URL_GAME_ID_TEMPLATE = 'https://cors-anywhere.herokuapp.com/http://store.steampowered.com/api/appdetails?appids={gameId}'
 
 function fetchItems (gamesList) {
   // use the steam id from the profile to get the actual game data
@@ -92,9 +93,9 @@ function fetchItems (gamesList) {
   document.querySelector('#before-table').innerHTML = ''
   createProgressBar()
 
-  // colect each game from their library and render it
+  // collect each game from their library and render it
   gamesList.response.games.forEach((element) => {
-    const url = URL_GAMEID_TEMPLATE.replace('{gameId}', element.appid)
+    const url = URL_GAME_ID_TEMPLATE.replace('{gameId}', element.appid)
     const promise = fetch(url).then((response) => {
       return response.json()
     }).then(renderItems)
@@ -103,10 +104,11 @@ function fetchItems (gamesList) {
   })
 }
 
-const URL_USERID_TEMPLATE = 'https://cors-anywhere.herokuapp.com/https://api.steampowered.com/IPlayerService/GetOwnedGames/v1/?key=781B096A18E5438AAA028E11D22B796E&steamid={steamId}'
+const URL_USER_ID_TEMPLATE = 'https://cors-anywhere.herokuapp.com/https://api.steampowered.com/IPlayerService/GetOwnedGames/v1/?key=781B096A18E5438AAA028E11D22B796E&steamid={steamId}'
 function fetchGameList (steamId) {
+  console.log(steamId)
   // collect all games from a user's library
-  const url = URL_USERID_TEMPLATE.replace('{steamId}', steamId)
+  const url = URL_USER_ID_TEMPLATE.replace('{steamId}', steamId)
   const promise = fetch(url).then((response) => {
     return response.json()
   }).then(fetchItems)
@@ -114,7 +116,9 @@ function fetchGameList (steamId) {
   return promise
 }
 
+// run the program to have an initial population of games on the screen
 fetchGameList('76561198239932484')
+
 document.querySelector('#search').addEventListener('click', (event) => {
   // collect SteamID
   event.preventDefault()
@@ -126,8 +130,8 @@ document.querySelector('#search').addEventListener('click', (event) => {
   } else {
     // if there is a string it means that a custom url was entered which means
     // that the SteamId must be decoded from the url
-    const URL_USERID_TEMPLATE = 'https://cors-anywhere.herokuapp.com/http://api.steampowered.com/ISteamUser/ResolveVanityURL/v0001/?key=781B096A18E5438AAA028E11D22B796E&vanityurl={vanityurl}'
-    const url = URL_USERID_TEMPLATE.replace('{vanityurl}', document.querySelector('input').value)
+    const URL_USER_ID_TEMPLATE = 'https://cors-anywhere.herokuapp.com/http://api.steampowered.com/ISteamUser/ResolveVanityURL/v0001/?key=781B096A18E5438AAA028E11D22B796E&vanityurl={vanityurl}'
+    const url = URL_USER_ID_TEMPLATE.replace('{vanityurl}', document.querySelector('input').value)
     const promise = fetch(url).then((response) => {
       return response.json()
     }).then((data) => { fetchGameList(data.response.steamid) }).catch(renderError)
