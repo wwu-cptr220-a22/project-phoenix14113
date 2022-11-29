@@ -3,10 +3,10 @@
 // so that the link redirects through a proxy server to avoid CORS errors
 // that the steam API throws for not being a secure access.
 
-const URL_USERID_TEMPLATE = 'https://cors-anywhere.herokuapp.com/https://api.steampowered.com/IPlayerService/GetOwnedGames/v1/?key=781B096A18E5438AAA028E11D22B796E&steamid={steamId}'
-const URL_GAMEID_TEMPLATE = 'https://cors-anywhere.herokuapp.com/http://store.steampowered.com/api/appdetails?appids={gameId}'
-const URL_CUSTOMID_TEMPLATE = 'https://cors-anywhere.herokuapp.com/http://api.steampowered.com/ISteamUser/ResolveVanityURL/v0001/?key=781B096A18E5438AAA028E11D22B796E&vanityurl={vanityurl}'
-const URL_ACHIEVEMENTS_TEMPLATE = 'https://cors-anywhere.herokuapp.com/http://api.steampowered.com/ISteamUserStats/GetPlayerAchievements/v0001/?appid=252950&key=781B096A18E5438AAA028E11D22B796E&steamid={steamId}'
+// const URL_USERID_TEMPLATE = 'https://cors-anywhere.herokuapp.com/https://api.steampowered.com/IPlayerService/GetOwnedGames/v1/?key=781B096A18E5438AAA028E11D22B796E&steamid={steamId}'
+// const URL_GAMEID_TEMPLATE = 'https://cors-anywhere.herokuapp.com/http://store.steampowered.com/api/appdetails?appids={gameId}'
+// const URL_CUSTOMID_TEMPLATE = 'https://cors-anywhere.herokuapp.com/http://api.steampowered.com/ISteamUser/ResolveVanityURL/v0001/?key=781B096A18E5438AAA028E11D22B796E&vanityurl={vanityurl}'
+// const URL_ACHIEVEMENTS_TEMPLATE = 'https://cors-anywhere.herokuapp.com/http://api.steampowered.com/ISteamUserStats/GetPlayerAchievements/v0001/?appid=252950&key=781B096A18E5438AAA028E11D22B796E&steamid={steamId}'
 let userList = []
 
 // MY USER ID IS 76561198416262376
@@ -65,9 +65,9 @@ function sortByAchievements (oldUserList) {
 
   // sort the value rows
   valid.sort(function (a , b) { return (a - b) })
-  valid.forEach((sorted_element) => {
+  valid.forEach((sortedElement) => {
     for (let i = 0; i < oldUserList.length; i++) {
-      if (oldUserList[i].achievementsEarned === sorted_element) {
+      if (oldUserList[i].achievementsEarned === sortedElement) {
         newUserList.push(oldUserList[i])
         oldUserList.splice(i, 1)
         break
@@ -76,13 +76,14 @@ function sortByAchievements (oldUserList) {
   })
   // apply rank to value rows
   let counter = 1
-  newUserList.forEach((element) => {
-    element.playerRank = counter
+  newUserList.forEach((element, index) => {
     if ((index > 0) && (element.achievementsEarned !== newUserList[index - 1].achievementsEarned)) {
       counter++
     }
+    element.playerRank = counter
   })
   // apply rank to N/A rows
+  counter++
   garbage.forEach((element) => {
     element.playerRank = counter
     newUserList.push(element)
@@ -95,30 +96,30 @@ function sortByAchievements (oldUserList) {
 function sortByTimePlayed (oldUserList) {
 
   const newUserList = []
-  const minutes_list = []
+  const minutesList = []
 
   oldUserList.forEach((element) => {
-    minutes_list.push(element.timePlayed)
+    minutesList.push(element.timePlayed)
   })
 
-  minutes_list.sort(function (a , b) { return (a - b) })
-  minutes_list.forEach((sorted_element) => {
+  minutesList.sort(function (a , b) { return (b - a) })
+  minutesList.forEach((sortedElement) => {
     for (let i = 0; i < oldUserList.length; i++) {
-      if (oldUserList[i].timePlayed === sorted_element) {
+      if (oldUserList[i].timePlayed === sortedElement) {
         newUserList.push(oldUserList[i])
         oldUserList.splice(i, 1)
         break
       }
     }
   })
-
   
   let counter = 1
   newUserList.forEach((element, index) => {
-    element.playerRank = counter
     if ((index > 0) && (element.timePlayed !== newUserList[index - 1].timePlayed)) {
       counter++
     }
+    element.playerRank = counter
+    // if (index > 0) {console.log(element.timePlayed, newUserList[index - 1].timePlayed)}
   })
 
   userList = newUserList
@@ -147,15 +148,15 @@ button.addEventListener('click', (event) => {
   buildLeaderboard()
 })
 
-const achievement_button = document.querySelector('#achievement-sort')
-achievement_button.addEventListener('click', (event) => {
+const achievementButton = document.querySelector('#achievement-sort')
+achievementButton.addEventListener('click', (event) => {
   event.preventDefault()
   sortByAchievements(userList)
   buildLeaderboard()
 })
 
-const time_played_button = document.querySelector('#time-played-sort')
-time_played_button.addEventListener('click', (event) => {
+const timePlayedButton = document.querySelector('#time-played-sort')
+timePlayedButton.addEventListener('click', (event) => {
   event.preventDefault()
   sortByTimePlayed(userList)
   buildLeaderboard()
@@ -201,18 +202,17 @@ function fetchItems (gamesList, steamId) {
   const playerInfo = {}
 
   // collect each game from their library and render it
+  playerInfo['timePlayed'] = 0
   gamesList.response.games.forEach((element) => {
     if (element.appid === 252950) {
       playerInfo['timePlayed'] = element.playtime_forever
-    } else {
-      playerInfo['timePlayed'] = 0
     }
   })
 
   // add user achievements to the table
   const URL_ACHIEVEMENTS_TEMPLATE = 'https://cors-anywhere.herokuapp.com/http://api.steampowered.com/ISteamUserStats/GetPlayerAchievements/v0001/?appid=252950&key=781B096A18E5438AAA028E11D22B796E&steamid={steamId}'
-  const url_achievements = URL_ACHIEVEMENTS_TEMPLATE.replace('{steamId}', steamId)
-  const promise_achievements = fetch(url_achievements).then((response) => {
+  const urlAchievements = URL_ACHIEVEMENTS_TEMPLATE.replace('{steamId}', steamId)
+  fetch(urlAchievements).then((response) => {
     return (response.json())
   }).then((data) => {
     console.log(data)
@@ -220,10 +220,9 @@ function fetchItems (gamesList, steamId) {
       playerInfo['achievementsEarned'] = 'N/A'
       playerInfo['achievementsTotal'] = 'N/A'
     } else {
-      console.log(data)
-      const achieved_array = []
-      data.playerstats.achievements.forEach((element) => { if (element.achieved === 1) { achieved_array.push(element) } })
-      playerInfo['achievementsEarned'] = achieved_array.length
+      const achievedArray = []
+      data.playerstats.achievements.forEach((element) => { if (element.achieved === 1) { achievedArray.push(element) } })
+      playerInfo['achievementsEarned'] = achievedArray.length
       playerInfo['achievementsTotal'] = data.playerstats.achievements.length
     }
   })
@@ -231,7 +230,7 @@ function fetchItems (gamesList, steamId) {
   // add username to the table
   const URL_USERNAME_TEMPLATE = 'https://cors-anywhere.herokuapp.com/https://api.steampowered.com/ISteamUser/GetPlayerSummaries/v0002/?key=781B096A18E5438AAA028E11D22B796E&steamids={steamIds}'
   const url = URL_USERNAME_TEMPLATE.replace('{steamIds}', '[' + steamId + ']')
-  const promise = fetch(url).then((response) => {
+  fetch(url).then((response) => {
     return (response.json())
   }).then((data) => {
     playerInfo['playerName'] = data.response.players[0].personaname
