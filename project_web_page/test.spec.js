@@ -147,7 +147,7 @@ describe('HTML content checks', () => {
 })
 
 describe('CSS style checks', () => {
-  const baseDir = path.join('file://' , __dirname )
+  const baseDir = 'file://' + __dirname + '/'
   const CSSPathAdam = path.join(__dirname , '/css/style.css')
   const CSSAdam = fs.readFileSync(CSSPathAdam, 'utf-8')
 
@@ -158,9 +158,9 @@ describe('CSS style checks', () => {
     const inlined = await inlineCss(htmlGamesTable, { extraCss: CSSAdam, url: baseDir, removeLinkTags: false })
     $CSSAdam = cheerio.load(inlined)
   })
-
   describe("Adam's css file tests", () => {
     test('footers are at the bottoms by default', async () => {
+      
       const footer = $CSSAdam('footer')
       expect(footer.css('position')).toEqual('fixed')
       expect(footer.css('bottom')).toEqual('0')

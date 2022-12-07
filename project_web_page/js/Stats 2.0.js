@@ -1,8 +1,8 @@
 'use strict'
 
 const URL_USERID_TEMPLATE = 'https://cors-anywhere.herokuapp.com/https://api.steampowered.com/IPlayerService/GetOwnedGames/v1/?key=781B096A18E5438AAA028E11D22B796E&steamid={steamId}'
-const URL_GAMEID_TEMPLATE = 'https://cors-anywhere.herokuapp.com/http://store.steampowered.com/api/appdetails?appids={gameId}'
-const URL_CUSTOMID_TEMPLATE = 'https://cors-anywhere.herokuapp.com/http://api.steampowered.com/ISteamUser/ResolveVanityURL/v0001/?key=781B096A18E5438AAA028E11D22B796E&vanityurl={vanityurl}'
+//const URL_GAMEID_TEMPLATE = 'https://cors-anywhere.herokuapp.com/http://store.steampowered.com/api/appdetails?appids={gameId}'
+//const URL_CUSTOMID_TEMPLATE = 'https://cors-anywhere.herokuapp.com/http://api.steampowered.com/ISteamUser/ResolveVanityURL/v0001/?key=781B096A18E5438AAA028E11D22B796E&vanityurl={vanityurl}'
 const userList = []
 
 // MY USER ID IS 76561198416262376
@@ -110,7 +110,7 @@ function fetchItems (gamesList, steamId) {
 
   const URL_USERNAME_TEMPLATE = 'https://cors-anywhere.herokuapp.com/https://api.steampowered.com/ISteamUser/GetPlayerSummaries/v0002/?key=781B096A18E5438AAA028E11D22B796E&steamids={steamIds}'
   const url = URL_USERNAME_TEMPLATE.replace('{steamIds}', '[' + steamId + ']')
-  const promise = fetch(url).then((response) => {
+  fetch(url).then((response) => {
     return (response.json())
   }).then((data) => {
     playerInfo['Player Name'] = data.response.players[0].personaname
