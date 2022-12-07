@@ -14,7 +14,6 @@ let userList = []
 // ADAM'S IS 76561198239932484
 
 function buildLeaderboard () {
-
   const tbody = document.querySelector('tbody')
   tbody.innerHTML = ''
 
@@ -26,8 +25,8 @@ function buildLeaderboard () {
     userUsername.textContent = element.playerName
 
     const userTimePlayed = document.createElement('td')
-    let playHours = element.timePlayed / 60
-    let playMinutes = (playHours - Math.round(playHours)) * 60
+    const playHours = element.timePlayed / 60
+    const playMinutes = (playHours - Math.round(playHours)) * 60
     const newPlayTime = playHours.toFixed(0) + 'h ' + playMinutes.toFixed(0) + 'm'
     userTimePlayed.textContent = newPlayTime
 
@@ -49,7 +48,6 @@ function buildLeaderboard () {
 
 // sort the rows by achievement count
 function sortByAchievements (oldUserList) {
-
   const newUserList = []
   const valid = []
   const garbage = []
@@ -64,7 +62,7 @@ function sortByAchievements (oldUserList) {
   })
 
   // sort the value rows
-  valid.sort(function (a , b) { return (a - b) })
+  valid.sort(function (a, b) { return (a - b) })
   valid.forEach((sortedElement) => {
     for (let i = 0; i < oldUserList.length; i++) {
       if (oldUserList[i].achievementsEarned === sortedElement) {
@@ -88,13 +86,12 @@ function sortByAchievements (oldUserList) {
     element.playerRank = counter
     newUserList.push(element)
   })
-  
+
   userList = newUserList
 }
 
 // sort the rows by time played
 function sortByTimePlayed (oldUserList) {
-
   const newUserList = []
   const minutesList = []
 
@@ -102,7 +99,7 @@ function sortByTimePlayed (oldUserList) {
     minutesList.push(element.timePlayed)
   })
 
-  minutesList.sort(function (a , b) { return (b - a) })
+  minutesList.sort(function (a, b) { return (b - a) })
   minutesList.forEach((sortedElement) => {
     for (let i = 0; i < oldUserList.length; i++) {
       if (oldUserList[i].timePlayed === sortedElement) {
@@ -112,7 +109,7 @@ function sortByTimePlayed (oldUserList) {
       }
     }
   })
-  
+
   let counter = 1
   newUserList.forEach((element, index) => {
     if ((index > 0) && (element.timePlayed !== newUserList[index - 1].timePlayed)) {
@@ -202,10 +199,10 @@ function fetchItems (gamesList, steamId) {
   const playerInfo = {}
 
   // collect each game from their library and render it
-  playerInfo['timePlayed'] = 0
+  playerInfo.timePlayed = 0
   gamesList.response.games.forEach((element) => {
     if (element.appid === 252950) {
-      playerInfo['timePlayed'] = element.playtime_forever
+      playerInfo.timePlayed = element.playtime_forever
     }
   })
 
@@ -217,13 +214,13 @@ function fetchItems (gamesList, steamId) {
   }).then((data) => {
     console.log(data)
     if (data.playerstats.success === false) {
-      playerInfo['achievementsEarned'] = 'N/A'
-      playerInfo['achievementsTotal'] = 'N/A'
+      playerInfo.achievementsEarned = 'N/A'
+      playerInfo.achievementsTotal = 'N/A'
     } else {
       const achievedArray = []
       data.playerstats.achievements.forEach((element) => { if (element.achieved === 1) { achievedArray.push(element) } })
-      playerInfo['achievementsEarned'] = achievedArray.length
-      playerInfo['achievementsTotal'] = data.playerstats.achievements.length
+      playerInfo.achievementsEarned = achievedArray.length
+      playerInfo.achievementsTotal = data.playerstats.achievements.length
     }
   })
 
@@ -233,7 +230,7 @@ function fetchItems (gamesList, steamId) {
   fetch(url).then((response) => {
     return (response.json())
   }).then((data) => {
-    playerInfo['playerName'] = data.response.players[0].personaname
+    playerInfo.playerName = data.response.players[0].personaname
   }).then(buildLeaderboard)
 
   // throw an error if there are no games in their library
@@ -242,6 +239,6 @@ function fetchItems (gamesList, steamId) {
     return
   }
 
-  playerInfo['playerRank'] = ''
+  playerInfo.playerRank = ''
   userList.push(playerInfo)
 }
