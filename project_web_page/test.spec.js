@@ -33,27 +33,27 @@ describe('Source code is valid', () => {
     }
 
     for (const f of htmlFiles) {
-      await expect(path.join(__dirname , f)).toHaveNoHtmlLintErrorsAsync(lintOpts)
+      await expect(path.join(__dirname, f)).toHaveNoHtmlLintErrorsAsync(lintOpts)
     }
   })
 
   test('CSS validates without errors', async () => {
-    await expect(path.join(__dirname , '/css/style.css')).toHaveNoCssLintErrorsAsync() // test all files in css folder
-    await expect(path.join(__dirname , '/css-emcoberly/style.css')).toHaveNoCssLintErrorsAsync() // test all files in css folder
-    await expect(path.join(__dirname , '/css-harrbr/style.css')).toHaveNoCssLintErrorsAsync() // test all files in css folder
+    await expect(path.join(__dirname, '/css/style.css')).toHaveNoCssLintErrorsAsync() // test all files in css folder
+    await expect(path.join(__dirname, '/css-emcoberly/style.css')).toHaveNoCssLintErrorsAsync() // test all files in css folder
+    await expect(path.join(__dirname, '/css-harrbr/style.css')).toHaveNoCssLintErrorsAsync() // test all files in css folder
   })
 
   test('JavaScript lints without errors', () => {
     if (fs.existsSync(path.join(__dirname, 'js'))) {
       for (const f of jsFiles) {
-        expect([path.join(__dirname , 'js' , f)]).toHaveNoEsLintErrors()
+        expect([path.join(__dirname, 'js', f)]).toHaveNoEsLintErrors()
       }
     }
   })
 })
 
 // cheerio instance for AboutTeam.html
-const htmlPathAboutTeam = path.join(__dirname , htmlFiles[0])
+const htmlPathAboutTeam = path.join(__dirname, htmlFiles[0])
 const htmlAboutTeam = fs.readFileSync(htmlPathAboutTeam, 'utf-8') // load the HTML file once
 
 let $AboutTeamHTML
@@ -62,7 +62,7 @@ beforeAll(() => {
 })
 
 // cheerio instance for GamesTable.html
-const htmlPathGamesTable = path.join(__dirname , htmlFiles[1])
+const htmlPathGamesTable = path.join(__dirname, htmlFiles[1])
 const htmlGamesTable = fs.readFileSync(htmlPathGamesTable, 'utf-8')
 
 let $GamesTableHTML
@@ -71,7 +71,7 @@ beforeAll(() => {
 })
 
 // cheerio instance for index.html
-const htmlPathIndex = path.join(__dirname , htmlFiles[2])
+const htmlPathIndex = path.join(__dirname, htmlFiles[2])
 const htmlIndex = fs.readFileSync(htmlPathIndex, 'utf-8')
 
 let $indexHTML
@@ -80,7 +80,7 @@ beforeAll(() => {
 })
 
 // cheerio instance for RandomGame.html
-const htmlPathRandomGame = path.join(__dirname , htmlFiles[3])
+const htmlPathRandomGame = path.join(__dirname, htmlFiles[3])
 const htmlRandomGame = fs.readFileSync(htmlPathRandomGame, 'utf-8')
 
 let $RandomGameHTML
@@ -89,7 +89,7 @@ beforeAll(() => {
 })
 
 // cheerio instance for stats.html
-const htmlPathStats = path.join(__dirname , htmlFiles[4])
+const htmlPathStats = path.join(__dirname, htmlFiles[4])
 const htmlStats = fs.readFileSync(htmlPathStats, 'utf-8')
 
 let $statsHTML
@@ -148,7 +148,7 @@ describe('HTML content checks', () => {
 
 describe('CSS style checks', () => {
   const baseDir = 'file://' + __dirname + '/'
-  const CSSPathAdam = path.join(__dirname , '/css/style.css')
+  const CSSPathAdam = path.join(__dirname, '/css/style.css')
   const CSSAdam = fs.readFileSync(CSSPathAdam, 'utf-8')
 
   let $CSSAdam
@@ -160,7 +160,6 @@ describe('CSS style checks', () => {
   })
   describe("Adam's css file tests", () => {
     test('footers are at the bottoms by default', async () => {
-      
       const footer = $CSSAdam('footer')
       expect(footer.css('position')).toEqual('fixed')
       expect(footer.css('bottom')).toEqual('0')
@@ -184,8 +183,8 @@ describe('CSS style checks', () => {
 
 describe('JavaScript interaction checks', () => {
   // load JavaScript libraries separately
-  //const NavJsPath = path.join(__dirname , 'js' , jsFiles[0])
-  //const TableJsPath = path.join(__dirname , 'js' , jsFiles[4])
+  // const NavJsPath = path.join(__dirname , 'js' , jsFiles[0])
+  // const TableJsPath = path.join(__dirname , 'js' , jsFiles[4])
 
   /* I give up. I have been at this for 3 freaking hours with no
   progress. I can't get jest tounderstand that it can import function
@@ -194,6 +193,6 @@ describe('JavaScript interaction checks', () => {
   and none of it has worked. I am done. thanks */
 
   test('Click on hamburger menu gives the menu', async () => {
-    //const button = $GamesTableHTML('li#menu')
+    // const button = $GamesTableHTML('li#menu')
   })
 })
